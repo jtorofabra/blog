@@ -10,33 +10,9 @@
 <atom:link href="https://jtorofabra.github.io/juantf/index.xml" rel="self" type="application/rss+xml"/>
 <description>Física, matemáticas y código.</description>
 <generator>quarto-1.10.19</generator>
-<lastBuildDate>Thu, 08 Oct 2026 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 05 Oct 2026 22:00:00 GMT</lastBuildDate>
 <item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://jtorofabra.github.io/juantf/posts/post-with-code/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-
-<p>This is a post with executable code.</p>
-
-
-
- ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://jtorofabra.github.io/juantf/posts/post-with-code/</guid>
-  <pubDate>Thu, 08 Oct 2026 22:00:00 GMT</pubDate>
-  <media:content url="https://jtorofabra.github.io/juantf/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Welcome To My Blog</title>
-  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <title>First post</title>
   <link>https://jtorofabra.github.io/juantf/posts/welcome/</link>
   <description><![CDATA[ 
 
@@ -45,14 +21,12 @@
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="https://jtorofabra.github.io/juantf/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<p>First post in the blog!! sea usted bienvenido</p>
+<p><img src="https://jtorofabra.github.io/juantf/posts/welcome/divorcio.jpeg" class="img-fluid"></p>
 
 
 
  ]]></description>
-  <category>news</category>
   <guid>https://jtorofabra.github.io/juantf/posts/welcome/</guid>
   <pubDate>Mon, 05 Oct 2026 22:00:00 GMT</pubDate>
 </item>
