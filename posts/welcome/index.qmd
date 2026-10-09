@@ -1,8 +1,9 @@
 ---
 title: "First post"
 date: "2026-10-06"
+image: divorcio.jpeg
 ---
-First post in the blog!! welcome
+First post in the blog!!
 
 
 

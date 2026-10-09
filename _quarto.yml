@@ -1,10 +1,13 @@
 project:
   type: website
+  resources:
+    - CNAME
+
 
 website:
   title: "Juan's blog"
   description: "---"
-  site-url: https://jtorofabra.github.io/juantf   
+  site-url: https://juantorofabra.com
   navbar:
     right:
       - about.qmd
@@ -19,3 +22,5 @@ format:
       light: litera
       dark: darkly
     css: styles.css
+
+
