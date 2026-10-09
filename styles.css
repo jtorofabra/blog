@@ -1,1 +1,51 @@
-/* css styles */
+/* Fuente: una sola sans-serif para todo, más moderna */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono&display=swap');
+
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #222;
+}
+
+/* Títulos más marcados */
+h1, h2, h3, h4,
+.navbar-brand,
+.listing-title {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* Nombre del blog en la barra, un poco más presente */
+.navbar-brand {
+  font-size: 1.3rem;
+}
+
+/* Código con la mono de la misma familia */
+code, pre {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Enlaces en azul */
+a {
+  color: #2a5db0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Modo oscuro: texto claro y azul más suave */
+body.quarto-dark {
+  color: #ddd;
+}
+body.quarto-dark a {
+  color: #8ab4f8;
+}
+
+/* Fórmulas largas con scroll en el móvil */
+.math.display {
+  overflow-x: auto;
+}
+
