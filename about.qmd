@@ -1,19 +1,14 @@
 ---
 title: "About"
-image: profile.jpg
+image: aboutblog.jpeg
 about:
   template: jolla
   links:
-    - icon: bluesky
-      text: Bluesky
-      href: https://bsky.app/
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: github
-      text: Github
-      href: https://github.com
+      href: https://www.linkedin.com/in/juan-t-184297197/
+
 
 ---
 
-About this blog
+Hello! My name is Juan Toro Fabra and this is my personal blog. I'm a physics student at EPFL, originally from Madrid, Spain. I will be using this blog to share some ideas I come across, mainly related to physics/math but also hopefully some other things as well.

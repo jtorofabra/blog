@@ -2,22 +2,20 @@ project:
   type: website
 
 website:
-  description: "A blog built with Quarto"
-  site-url: https://your-website-url.example.com # you must change this appropriately for RSS feeds to work properly
-  title: "juantf"
+  title: "Juan's blog"
+  description: "---"
+  site-url: https://jtorofabra.github.io/juantf   
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: bluesky
-        href: https://bsky.app/
+        href: https://github.com/jtorofabra
+      - icon: rss
+        href: index.xml
+
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: litera
+      dark: darkly
     css: styles.css
-
-
-
