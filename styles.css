@@ -49,3 +49,17 @@ body.quarto-dark a {
   overflow-x: auto;
 }
 
+
+/* Galería de fotos pequeñas en la página About */
+.about-gallery p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.about-gallery img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+}
