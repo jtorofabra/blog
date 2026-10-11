@@ -190,6 +190,156 @@
   <media:content url="https://juantorofabra.com/posts/everybody_lives_in_ecuador/sandiadimensional2.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
+  <title>Ferromagnetic properties of the game of Go</title>
+  <link>https://juantorofabra.com/posts/ferromagnetism-go/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<section id="what-is-go" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-go">What is Go</h2>
+<p>Lately I’ve been playing some <em>Go</em> with my friend Juan. Go is a Chinese board game where you basically have to place stones on a grid to capture territory. A group of stones is captured when it loses all its <em>liberties</em> (the empty points adjacent to it) i.e.&nbsp;when it is completely surrounded by enemy stones. As the nerds we are, we quickly noticed some similarities between the game of Go and the Ising model for ferromagnetism.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/playinggo2.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</section>
+<section id="what-is-the-ising-model" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-ising-model">What is the Ising model</h2>
+<p>The Ising model is a model for ferromagnetism developed in the 1920s. Essentially, it treats a material as a grid of tiny magnets (spins) that can point either up or down. The probability of finding the material in a given configuration (some combination of up and down spins) depends on its energy, which depends on two things (more in Annex A): 1. the external magnetic field, which pushes every spin in its direction, and 2. the interaction between neighbouring spins. When neighbours prefer to point the same way, the spins can align on their own, even without an external field, and the material is ferromagnetic.</p>
+<p>The similarities lie in the fact that <em>liberties</em> in Go are like the external field in the Ising model (your orthogonal neighbours affect whether you stay alive or not), territory can be white/black like spins are up/down, and that you end up with blocks of territory (lonely pieces die).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/ising_model.png" class="img-fluid figure-img"></p>
+<figcaption>Left: spins on a grid, coupled to their neighbours by <img src="https://latex.codecogs.com/png.latex?J"> and pushed by the external field <img src="https://latex.codecogs.com/png.latex?h">. Right: the textbook Ising model without external field, hot (disordered) and cold (the spins align on their own).</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p>I now set out to try to describe predicting the outcome of Go games with this model, and hopefully try to see if it makes sense to define some notion of ferromagnetism for the game.</p>
+<p>Grosso modo this is the solution I came up with: start from a given position, and treat the existing stones as an external magnetic field. Then, with that external field, sample the probability distribution of an Ising model and take the prediction of the final outcome as the expected spins.</p>
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/pipeline.png" class="img-fluid"></p>
+<p>Essentially what we want is to find the parameters that assign low energies to the real final territory given some position and high energies to the rest.</p>
+<p>This model has three main things to be learned: how the color of a stone affects the external magnetic field around it (<img src="https://latex.codecogs.com/png.latex?w">), how the position in the board affects the external magnetic field (<img src="https://latex.codecogs.com/png.latex?b">), and finally the coupling between neighbours (<img src="https://latex.codecogs.com/png.latex?J">). How many parameters? <img src="https://latex.codecogs.com/png.latex?w"> is a 5x5 kernel, <img src="https://latex.codecogs.com/png.latex?b"> is a 9x9 map (the entire board), and <img src="https://latex.codecogs.com/png.latex?J"> is a 3x3 kernel. However from symmetry we can reduce this to 6 parameters for <img src="https://latex.codecogs.com/png.latex?w">, 15 parameters for <img src="https://latex.codecogs.com/png.latex?b">, and 2 for <img src="https://latex.codecogs.com/png.latex?J">. Total 23. The next step is to find a dataset to train these parameters, and based on the shape of <img src="https://latex.codecogs.com/png.latex?J"> we will be able to see if Go can be described through ferromagnetic coupling.</p>
+<p>To build the training set I downloaded the KataGo model and made it play about 7000 games against itself, from which I extracted a position in the middle of the game and the final territory assigned once the game was done. Then I trained the parameters with PyTorch to maximize the log likelihood of the final territory in all the games given the model parameters (see Annex B).</p>
+<p>Once we have the trained parameters we can compare what the model predicts will be the outcome (see Annex C) given a starting position and compare it to the actual outcome.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/predictions.png" class="img-fluid figure-img"></p>
+<figcaption>Three random games the model hadn’t seen during training. Blue is black’s territory, orange white’s; the paler, the less sure the model is.</figcaption>
+</figure>
+</div>
+<p>This doesn’t seem too bad, but let’s take a look at the parameters. The first thing is that the baseline with no spin coupling already does fairly well, so it’s not immediately clear whether or not coupling is really needed.</p>
+<p>From the coupling parameters we also see that only orthogonal neighbours couple, which makes sense given the rules of the game (although more than I expected).</p>
+<p>In numbers, both models get about 80 % of the points right, so the coupling doesn’t help to guess each point. Where it does help is with the whole board at once: the log-loss of the real final territory is cut in half, because the model knows that territory comes in blocks.</p>
+<p>And <img src="https://latex.codecogs.com/png.latex?J%20=%200.77"> is a strong coupling, the textbook 2D Ising model (infinite board, no external field) orders into a magnet above <img src="https://latex.codecogs.com/png.latex?J%20%5Capprox%200.44">. Our board is small and the stones act as a field so this is only a rough reference, but it is something.</p>
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/parameters.png" class="img-fluid"></p>
+<p>The coupling also changes how the stones create a field. Without coupling the kernel <img src="https://latex.codecogs.com/png.latex?w"> is a broad blob with large weights even far from the center. Every square is guessed on its own, so a stone has to spread its colour over its whole area of influence by itself. With coupling the kernel is very local and even has a negative weight on its four orthogonal neighbours.</p>
+<p>The bias <img src="https://latex.codecogs.com/png.latex?b"> is and small noisy but we can recognise some areas and positions that vaguely make sense knowing the game. Again a big change between coupling and non-coupling cases.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/bias.png" class="img-fluid figure-img"></p>
+<figcaption>The bias <img src="https://latex.codecogs.com/png.latex?b"> on each square from the player to move’s point of view.</figcaption>
+</figure>
+</div>
+<p>Also, the average predictions with and without coupling look very similar, but that’s only the average. If instead we sample two possible endings from each model for the same game they change a lot.</p>
+<p>Without coupling every point is drawn on its own while with coupling you get blobs of the same color like in a real game.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/samples.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Two endings sampled from each model, for the first game above.</figcaption>
+</figure>
+</div>
+</section>
+<section id="ferromagnetism" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="ferromagnetism">Ferromagnetism?</h2>
+<p>Of course Go is not Ising. A group lives or dies all at once, a stone that will be captured pushes the wrong way, shape matters and not just the number of stones, our domain is really small, etc etc… Our analogy ends here.</p>
+<p>But we can forget about these silly limitations and imagine a hypothetical where the game of Go was just our fitted Ising model. <strong>Would it be ferromagnetic?</strong></p>
+<p>Let’s see two ways to find a ferromagnet.</p>
+<ol type="1">
+<li><p>Heat it up and at some critical temperature <img src="https://latex.codecogs.com/png.latex?T_c"> it loses its magnetization, with a peak in the susceptibility (how much the magnetization <img src="https://latex.codecogs.com/png.latex?M%20=%20%5Csum_i%20s_i"> responds to small changes).</p></li>
+<li><p>Below <img src="https://latex.codecogs.com/png.latex?T_c"> if you add an external field and then remove it, it stays magnetized (hysteresis). Our model has no temperature, but we can give it one by dividing the energy by <img src="https://latex.codecogs.com/png.latex?T"> so that <img src="https://latex.codecogs.com/png.latex?T%20=%201"> is the trained model (details in Annex D).</p></li>
+</ol>
+<p>Let’s start without stones on an empty board (no external field).</p>
+<p class="page-columns page-full"><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/temperature_sweep.png" class="column-page img-fluid"></p>
+<p>There is a clear peak at <img src="https://latex.codecogs.com/png.latex?T_c%20%5Capprox%201.5">, and our model (<img src="https://latex.codecogs.com/png.latex?T%20=%201">) sits below it, so with no external field it is already magnetized.</p>
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/hysteresis.png" class="img-fluid"></p>
+<p>And it has memory. After a push and back to zero field it stays 96 % magnetized, while above <img src="https://latex.codecogs.com/png.latex?T_c"> (<img src="https://latex.codecogs.com/png.latex?T%20=%202.5">) it just follows the field and forgets it. So the coupling the model learned from Go is, on its own, the coupling of a magnet.</p>
+<p>Again this is not surprising knowing the coupling kernel from the training, but it still learnt that all on its own from looking at games. It could have also learnt a different coupling or no coupling at all.</p>
+</section>
+<section id="the-answer" class="level2">
+<h2 class="anchored" data-anchor-id="the-answer">The answer</h2>
+<p>Yes, but not exactly.</p>
+<p>To end the post here’s a whole game move by move with its corresponding prediction at each point.</p>
+<p>Look how it’s best prediction is for around the middle of the game (trained on mid-games) and towards the end it doesn’t realize the white pieces A4-A5-A6 were dead from the start. Still, it looks nice.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/ferromagnetism-go/figures/game.gif" class="img-fluid figure-img"></p>
+<figcaption>A whole test game, move by move, with the prediction of the Ising model at each move. At the end, the real final territory.</figcaption>
+</figure>
+</div>
+</section>
+<section id="annex" class="level2">
+<h2 class="anchored" data-anchor-id="annex">Annex</h2>
+<section id="annex-a" class="level3">
+<h3 class="anchored" data-anchor-id="annex-a">A. The model</h3>
+<p>Each point <img src="https://latex.codecogs.com/png.latex?i"> of the <img src="https://latex.codecogs.com/png.latex?9%5Ctimes9"> board carries a spin <img src="https://latex.codecogs.com/png.latex?s_i%20=%20%5Cpm%201">, its final owner, in the perspective of the player to move (<img src="https://latex.codecogs.com/png.latex?+1">: the player to move, <img src="https://latex.codecogs.com/png.latex?-1">: the opponent; the few neutral points are left out). The position is <img src="https://latex.codecogs.com/png.latex?X_k%20%5Cin%20%5C%7B+1,%20-1,%200%5C%7D"> (stone of the player to move, of the opponent, empty). The model is a conditional Ising model, i.e.&nbsp;a Boltzmann distribution whose field depends on the position:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(s%20%5Cmid%20X)%20=%20%5Cfrac%7B1%7D%7BZ(X)%7D%20%5Cexp%5CBig(%20%5Csum_i%20h_i%20s_i%20+%20%5Csum_%7B%5Clangle%20ij%20%5Crangle%7D%20J_%7Bij%7D%20s_i%20s_j%20%5CBig),%0A%5Cqquad%0Ah_i%20=%20%5Csum_%7B%5Cmathbf%20r%7D%20w(%5Cmathbf%20r)%5C,%20X_%7Bi%20+%20%5Cmathbf%20r%7D%20+%20b_i%20,%0A"></p>
+<p>with <img src="https://latex.codecogs.com/png.latex?Z(X)%20=%20%5Csum_s%20%5Cexp(%5Ccdots)"> the partition function, a sum over <img src="https://latex.codecogs.com/png.latex?2%5E%7B81%7D%20%5Capprox%2010%5E%7B24%7D"> configurations, and <img src="https://latex.codecogs.com/png.latex?-%5Cbig(%5Csum_i%20h_i%20s_i%20+%20%5Csum_%7B%5Clangle%20ij%20%5Crangle%7D%20J_%7Bij%7D%20s_i%20s_j%5Cbig)"> the Hamiltonian (the temperature is absorbed in the parameters, <img src="https://latex.codecogs.com/png.latex?T%20=%201">). The field is a convolution of the stones with a <img src="https://latex.codecogs.com/png.latex?5%5Ctimes5"> kernel <img src="https://latex.codecogs.com/png.latex?w"> plus a bias <img src="https://latex.codecogs.com/png.latex?b_i"> per square, and <img src="https://latex.codecogs.com/png.latex?J_%7Bij%7D%20=%20J_%5Ctext%7Borto%7D"> for orthogonal neighbours, <img src="https://latex.codecogs.com/png.latex?J_%5Ctext%7Bdiag%7D"> for diagonal ones and <img src="https://latex.codecogs.com/png.latex?0"> otherwise. All parameters are invariant under the 8 symmetries of the board (the dihedral group <img src="https://latex.codecogs.com/png.latex?D_4">): <img src="https://latex.codecogs.com/png.latex?w(%5Cmathbf%20r)"> only depends on <img src="https://latex.codecogs.com/png.latex?(%5Cmin(%7C%5CDelta%20x%7C,%20%7C%5CDelta%20y%7C),%20%5Cmax(%7C%5CDelta%20x%7C,%20%7C%5CDelta%20y%7C))">, 6 classes for <img src="https://latex.codecogs.com/png.latex?%7C%5CDelta%20x%7C,%20%7C%5CDelta%20y%7C%20%5Cle%202">, and <img src="https://latex.codecogs.com/png.latex?b_i"> is constant on each of the 15 orbits of squares. So <img src="https://latex.codecogs.com/png.latex?6%20+%2015%20+%202%20=%2023"> parameters, and the model is equivariant: rotating the position rotates the prediction.</p>
+<p>Fixing all spins but one, only the terms containing <img src="https://latex.codecogs.com/png.latex?s_i"> survive, and</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(s_i%20%5Cmid%20s_%7B%5Csetminus%20i%7D,%20X)%20=%20%5Cfrac%7Be%5E%7Bs_i%20H_i%7D%7D%7B2%5Ccosh%20H_i%7D%20=%20%5Csigma(2%20s_i%20H_i),%0A%5Cqquad%20H_i%20=%20h_i%20+%20%5Csum_j%20J_%7Bij%7D%20s_j%20,%0A%5Cqquad%20%5Csigma(z)%20=%20%5Cfrac%7B1%7D%7B1%20+%20e%5E%7B-z%7D%7D%20.%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?H_i"> is the local field: what the stones say plus what the neighbours say. Everything below (training, sampling, simulating) is built from this formula.</p>
+</section>
+<section id="annex-b" class="level3">
+<h3 class="anchored" data-anchor-id="annex-b">B. Training: exact likelihood with a transfer matrix</h3>
+<p>We minimize the negative log-likelihood per point over the <img src="https://latex.codecogs.com/png.latex?n%20=%205535"> training games,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathcal%20L%20=%20-%5Cfrac%7B1%7D%7BN_%5Ctext%7Bpoints%7D%7D%20%5Csum_%7Bn%7D%20%5Clog%20P(s%5E%7B(n)%7D%20%5Cmid%20X%5E%7B(n)%7D)%20=%20%5Cfrac%7B1%7D%7BN_%5Ctext%7Bpoints%7D%7D%20%5Csum_n%20%5CBig%5B%20%5Clog%20Z(X%5E%7B(n)%7D)%20-%20%5Clog%20Z_%5Ctext%7Bfixed%7D(X%5E%7B(n)%7D)%20%5CBig%5D,%0A"></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?Z_%5Ctext%7Bfixed%7D"> is the same sum restricted to the configurations that agree with the real owners (neutral points are summed over). Since the exponent is linear in <img src="https://latex.codecogs.com/png.latex?(w,%20b,%20J)">, this is an exponential family: <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%20L"> is convex, and its gradient is the difference between the averages of the features in the data and in the model.</p>
+<p>The hard part is <img src="https://latex.codecogs.com/png.latex?Z">. Go through the board column by column: a column <img src="https://latex.codecogs.com/png.latex?%5Csigma%20%5Cin%20%5C%7B%5Cpm%201%5C%7D%5E9"> has <img src="https://latex.codecogs.com/png.latex?2%5E9%20=%20512"> states, and <img src="https://latex.codecogs.com/png.latex?J"> only couples neighbouring columns (diagonals included). Then</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AZ(X)%20=%20%5Csum_%7B%5Csigma_1,%20%5Cdots,%20%5Csigma_9%7D%20%5Cprod_%7Bk=1%7D%5E%7B9%7D%20e%5E%7B%5Cphi_k(%5Csigma_k)%7D%20%5Cprod_%7Bk=1%7D%5E%7B8%7D%20e%5E%7B%5Cpsi(%5Csigma_k,%20%5Csigma_%7Bk+1%7D)%7D,%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cphi_k(%5Csigma)%20=%20%5Csum_f%20h_%7Bf,k%7D%5C,%20%5Csigma_f%20+%20J_%5Ctext%7Borto%7D%20%5Csum_f%20%5Csigma_f%20%5Csigma_%7Bf+1%7D,%0A%5Cqquad%0A%5Cpsi(%5Csigma,%20%5Csigma')%20=%20J_%5Ctext%7Borto%7D%20%5Csum_f%20%5Csigma_f%20%5Csigma'_f%20+%20J_%5Ctext%7Bdiag%7D%20%5Csum_f%20%5Cbig(%20%5Csigma_f%20%5Csigma'_%7Bf+1%7D%20+%20%5Csigma_%7Bf+1%7D%20%5Csigma'_f%20%5Cbig),%0A"></p>
+<p>which is a Markov chain of 9 links: <img src="https://latex.codecogs.com/png.latex?Z"> is obtained by multiplying a vector of 512 entries 9 times by the <img src="https://latex.codecogs.com/png.latex?512%20%5Ctimes%20512"> matrix <img src="https://latex.codecogs.com/png.latex?e%5E%7B%5Cpsi%7D"> (which only depends on <img src="https://latex.codecogs.com/png.latex?J">) and by the diagonal factors <img src="https://latex.codecogs.com/png.latex?e%5E%7B%5Cphi_k%7D"> (where the stones enter). In practice it is done in log space, subtracting the maximum at each step so that nothing overflows. For all the training games, <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%20L"> and its gradient (by automatic differentiation in PyTorch) take about one second, and LBFGS reaches the optimum (gradient <img src="https://latex.codecogs.com/png.latex?%5Csim%2010%5E%7B-7%7D">) in a few minutes. I checked the implementation against the brute-force sum on <img src="https://latex.codecogs.com/png.latex?3%5Ctimes3"> and <img src="https://latex.codecogs.com/png.latex?3%5Ctimes4"> boards (differences of <img src="https://latex.codecogs.com/png.latex?10%5E%7B-15%7D">). This only works because the board is narrow: on <img src="https://latex.codecogs.com/png.latex?13%5Ctimes13"> there would be 8192 states per column, and on <img src="https://latex.codecogs.com/png.latex?19%5Ctimes19"> about half a million.</p>
+</section>
+<section id="annex-c" class="level3">
+<h3 class="anchored" data-anchor-id="annex-c">C. Prediction: expected spins</h3>
+<p>The prediction is the magnetization of each point, <img src="https://latex.codecogs.com/png.latex?m_i%20=%20%5Clangle%20s_i%20%5Crangle%20=%20%5Csum_s%20s_i%5C,%20P(s%20%5Cmid%20X)">, with <img src="https://latex.codecogs.com/png.latex?P(%5Ctext%7Bplayer%20to%20move%20owns%20%7D%20i)%20=%20(1%20+%20m_i)/2">. Two ways to get it:</p>
+<ul>
+<li><strong>Exact.</strong> <img src="https://latex.codecogs.com/png.latex?m_i%20=%20%5Cpartial%20%5Clog%20Z%20/%20%5Cpartial%20h_i">. Differentiating the transfer-matrix computation of <img src="https://latex.codecogs.com/png.latex?%5Clog%20Z"> is exactly the forward–backward algorithm of a hidden Markov model, and PyTorch does it for free: a fraction of a second for the 1436 test games.</li>
+<li><strong>Gibbs sampling.</strong> Start from a random board and redraw each spin with <img src="https://latex.codecogs.com/png.latex?P(s_i%20=%20+1%20%5Cmid%20%5Ctext%7Brest%7D)%20=%20%5Csigma(2H_i)">. With orthogonal and diagonal neighbours, the 4 sublattices (even/odd row <img src="https://latex.codecogs.com/png.latex?%5Ctimes"> even/odd column) have no neighbours inside themselves, so each sublattice is updated at once. After a burn-in, the boards follow <img src="https://latex.codecogs.com/png.latex?P(s%20%5Cmid%20X)">, and <img src="https://latex.codecogs.com/png.latex?m_i"> is the average of <img src="https://latex.codecogs.com/png.latex?s_i">. With long chains it agrees with the exact result (mean difference 0.016), but it is thousands of times slower, and close to a phase transition the chains mix slowly.</li>
+</ul>
+<p>The predictions in the post are the exact ones. The sampled endings are single Gibbs boards after 1000 sweeps; without coupling every point is just drawn independently with probability <img src="https://latex.codecogs.com/png.latex?(1%20+%20m_i)/2">.</p>
+</section>
+<section id="annex-d" class="level3">
+<h3 class="anchored" data-anchor-id="annex-d">D. Temperature, susceptibility and hysteresis</h3>
+<p><strong>Temperature.</strong> We take the trained parameters and put back a temperature,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP_T(s%20%5Cmid%20X)%20=%20%5Cfrac%7B1%7D%7BZ_T%7D%20%5Cexp%5CBig%5B%20%5Cfrac%7B1%7D%7BT%7D%20%5CBig(%20%5Csum_i%20h_i%20s_i%20+%20%5Csum_%7B%5Clangle%20ij%20%5Crangle%7D%20J_%7Bij%7D%20s_i%20s_j%20%5CBig)%20%5CBig%5D,%0A"></p>
+<p>so <img src="https://latex.codecogs.com/png.latex?T%20=%201"> is the trained model. For the board without stones (<img src="https://latex.codecogs.com/png.latex?h%20=%200">) and only orthogonal neighbours this is exactly the 2D Ising model with <img src="https://latex.codecogs.com/png.latex?K%20=%20J_%5Ctext%7Borto%7D/T">.</p>
+<p><strong>Susceptibility.</strong> With <img src="https://latex.codecogs.com/png.latex?M%20=%20%5Csum_i%20s_i"> (the score of the game before komi), add a uniform field <img src="https://latex.codecogs.com/png.latex?H"> to every point. Differentiating <img src="https://latex.codecogs.com/png.latex?%5Clog%20Z_T"> twice with respect to <img src="https://latex.codecogs.com/png.latex?H">:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B%5Cpartial%20%5Clangle%20M%20%5Crangle%7D%7B%5Cpartial%20H%7D%20=%20%5Cfrac%7B1%7D%7BT%7D%20%5Cbig(%20%5Clangle%20M%5E2%20%5Crangle%20-%20%5Clangle%20M%20%5Crangle%5E2%20%5Cbig)%20=%20%5Cfrac%7B1%7D%7BT%7D%20%5Csum_%7Bi,j%7D%20C_%7Bij%7D%20,%0A%5Cqquad%20C_%7Bij%7D%20=%20%5Clangle%20s_i%20s_j%20%5Crangle%20-%20%5Clangle%20s_i%20%5Crangle%20%5Clangle%20s_j%20%5Crangle,%0A"></p>
+<p>the fluctuation–dissipation relation: the response to a push equals the fluctuations, which are the sum of all the correlations. On a finite board without field <img src="https://latex.codecogs.com/png.latex?%5Clangle%20M%20%5Crangle%20=%200"> by symmetry at every <img src="https://latex.codecogs.com/png.latex?T">, so the standard finite-size estimators use <img src="https://latex.codecogs.com/png.latex?%7CM%7C"> instead, per point (<img src="https://latex.codecogs.com/png.latex?N%20=%2081">):</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Am%20=%20%5Cfrac%7B%5Clangle%20%7CM%7C%20%5Crangle%7D%7BN%7D,%20%5Cqquad%20%5Cchi%20=%20%5Cfrac%7B%5Clangle%20M%5E2%20%5Crangle%20-%20%5Clangle%20%7CM%7C%20%5Crangle%5E2%7D%7BN%5C,%20T%7D.%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?m"> is the order parameter (1 for a board of one colour) and <img src="https://latex.codecogs.com/png.latex?%5Cchi"> peaks at the (finite-size) critical temperature.</p>
+<p><strong>Simulation.</strong> Gibbs sampling with 300 sweeps of burn-in and 1000 of measurement: on the empty board for 31 temperatures from 0.25 to 4, with 256 chains.</p>
+<p><strong>Hysteresis.</strong> At fixed <img src="https://latex.codecogs.com/png.latex?T">, <img src="https://latex.codecogs.com/png.latex?H"> is increased from <img src="https://latex.codecogs.com/png.latex?-4"> to <img src="https://latex.codecogs.com/png.latex?+4"> in steps of 0.2 and decreased back, without restarting the chains (100 sweeps per step, half of them to relax and half to measure). The remanence is <img src="https://latex.codecogs.com/png.latex?m"> at <img src="https://latex.codecogs.com/png.latex?H%20=%200"> on the way down. The loop depends on how slowly <img src="https://latex.codecogs.com/png.latex?H"> moves (dynamic hysteresis).</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>statistical physics</category>
+  <category>games</category>
+  <category>machine learning</category>
+  <guid>https://juantorofabra.com/posts/ferromagnetism-go/</guid>
+  <pubDate>Sat, 10 Oct 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://juantorofabra.com/posts/ferromagnetism-go/figures/pipeline.png" medium="image" type="image/png" height="55" width="144"/>
+</item>
+<item>
   <title>First post</title>
   <link>https://juantorofabra.com/posts/welcome/</link>
   <description><![CDATA[ 
