@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-10-11">
-<meta name="description" content="Treating the stones as an external magnetic field and the final territory as spins: is Go a magnet?">
 
 <title>Ferromagnetic properties of the game of Go – Juan’s blog</title>
 <style>
@@ -113,7 +112,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -319,15 +318,10 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Ferromagnetic properties of the game of Go</h1>
-                  <div>
-        <div class="description">
-          Treating the stones as an external magnetic field and the final territory as spins: is Go a magnet?
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">physics</div>
-                <div class="quarto-category">go</div>
-                <div class="quarto-category">ising model</div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistical physics</div>
+                <div class="quarto-category">games</div>
+                <div class="quarto-category">machine learning</div>
               </div>
                   </div>
   </div>
@@ -350,66 +344,181 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-go" id="toc-what-is-go" class="nav-link active" data-scroll-target="#what-is-go">What is Go</a></li>
+  <li><a href="#what-is-the-ising-model" id="toc-what-is-the-ising-model" class="nav-link" data-scroll-target="#what-is-the-ising-model">What is the Ising model</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#ferromagnetism" id="toc-ferromagnetism" class="nav-link" data-scroll-target="#ferromagnetism">Ferromagnetism?</a></li>
+  <li><a href="#the-answer" id="toc-the-answer" class="nav-link" data-scroll-target="#the-answer">The answer</a></li>
+  <li><a href="#annex" id="toc-annex" class="nav-link" data-scroll-target="#annex">Annex</a>
+  <ul class="collapse">
+  <li><a href="#annex-a" id="toc-annex-a" class="nav-link" data-scroll-target="#annex-a">A. The model</a></li>
+  <li><a href="#annex-b" id="toc-annex-b" class="nav-link" data-scroll-target="#annex-b">B. Training</a></li>
+  <li><a href="#annex-c" id="toc-annex-c" class="nav-link" data-scroll-target="#annex-c">C. Prediction</a></li>
+  <li><a href="#annex-d" id="toc-annex-d" class="nav-link" data-scroll-target="#annex-d">D. Temperature and hysteresis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
 
-<p>Lately I’ve been playing some Go with my friend Juan. Go is a Japanese/Chinese board game where you basically have to place stones on a grid to capture territory. A group of stones is captured when it loses all its liberties, the empty points adjacent to it, i.e.&nbsp;when it is completely surrounded by enemy stones. As the nerds we are, we quickly noticed some similarities between the game of Go and the Ising model for ferromagnetism.</p>
+<section id="what-is-go" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-go">What is Go</h2>
+<p>Lately I’ve been playing some <em>Go</em> with my friend Juan. Go is a Chinese board game where you basically have to place stones on a grid to capture territory. A group of stones is captured when it loses all its <em>liberties</em> (the empty points adjacent to it) i.e.&nbsp;when it is completely surrounded by enemy stones. As the nerds we are, we quickly noticed some similarities between the game of Go and the Ising model for ferromagnetism.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/PLACEHOLDER_go_photo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="figures/playinggo2.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
-<p>The Ising model is a model for ferromagnetism developed in the 1920s. Essentially, it treats a material as a grid of tiny magnets (spins) that can point either up or down. The probability of finding the material in a given configuration (some combination of up and down spins) depends on its energy, which depends on two things (more in the <a href="#annex">Annex</a>): 1. the external magnetic field, which pushes every spin in its direction, and 2. the interaction between neighbouring spins. When neighbours prefer to point the same way, the spins can align on their own, even without an external field, and the material is ferromagnetic.</p>
+</section>
+<section id="what-is-the-ising-model" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-ising-model">What is the Ising model</h2>
+<p>The Ising model is a model for ferromagnetism developed in the 1920s. Essentially, it treats a material as a grid of tiny magnets (spins) that can point either up or down. The probability of finding the material in a given configuration (some combination of up and down spins) depends on its energy, which depends on two things (more in <a href="#annex-a">Annex A</a>): 1. the external magnetic field, which pushes every spin in its direction, and 2. the interaction between neighbouring spins. When neighbours prefer to point the same way, the spins can align on their own, even without an external field, and the material is ferromagnetic.</p>
+<p>The similarities lie in the fact that <em>liberties</em> in Go are like the external field in the Ising model (your orthogonal neighbours affect whether you stay alive or not), territory can be white/black like spins are up/down, and that you end up with blocks of territory (lonely pieces die).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/ising_model.png" class="img-fluid figure-img"></p>
-<figcaption>Left: spins on a grid, coupled to their neighbours by <span class="math inline">\(J\)</span> and pushed by the external field <span class="math inline">\(h\)</span>. Right: the textbook Ising model without external field, hot (disordered) and cold (the spins align on their own).</figcaption>
+<figcaption>Left: spins on a grid, coupled to their neighbours by <span class="math inline">\(J\)</span> and pushed by the external field <span class="math inline">\(h\)</span>. Right: the textbook Ising model without external field. Hot (disordered) and cold (the spins align on their own).</figcaption>
 </figure>
 </div>
-<p>I now set out to try to describe predicting the outcome of Go games with this model, and hopefully try to see if it made sense to define some notion of ferromagnetism for the game.</p>
+</section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p>I now set out to try to describe predicting the outcome of Go games with this model, and hopefully try to see if it makes sense to define some notion of ferromagnetism for the game.</p>
 <p>Grosso modo this is the solution I came up with: start from a given position, and treat the existing stones as an external magnetic field. Then, with that external field, sample the probability distribution of an Ising model and take the prediction of the final outcome as the expected spins.</p>
 <p><img src="figures/pipeline.png" class="img-fluid"></p>
-<p>This model has three main things to be learned: how the colour of a stone affects the external magnetic field around it (<span class="math inline">\(w\)</span>), how the position in the board affects the external magnetic field (<span class="math inline">\(b\)</span>), and finally the coupling between neighbours (<span class="math inline">\(J\)</span>). How many parameters? <span class="math inline">\(w\)</span> is a 5x5 kernel, <span class="math inline">\(b\)</span> is a 9x9 map (the entire board), and <span class="math inline">\(J\)</span> is a 3x3 kernel. However from symmetry we can reduce this to 6 parameters for <span class="math inline">\(w\)</span>, 15 parameters for <span class="math inline">\(b\)</span>, and 2 for <span class="math inline">\(J\)</span>. Total 23. The next step is to find a dataset to train these parameters, and based on the shape of <span class="math inline">\(J\)</span> we will be able to see if Go can be described through ferromagnetic coupling.</p>
-<p>To build the training set I downloaded the KataGo model and made it play about 7000 games against itself, from which I extracted a position in the middle of the game and the final territory assigned once the game was done. Then I trained the parameters with PyTorch to maximize the log likelihood of the final territory in all the games given the model parameters (see <a href="#annex">Annex</a>).</p>
-<p>Once we have the trained parameters we can compare what the model predicts will be the outcome (see <a href="#annex">Annex</a>) given a starting position and compare it to the actual outcome.</p>
+<p>Essentially what we want is to find the parameters that assign low energies to the real final territory given some position and high energies to the rest.</p>
+<p>This model has three main things to be learned: how the color of a stone affects the external magnetic field around it (<span class="math inline">\(w\)</span>), how the position in the board affects the external magnetic field (<span class="math inline">\(b\)</span>), and finally the coupling between neighbours (<span class="math inline">\(J\)</span>). How many parameters? <span class="math inline">\(w\)</span> is a 5x5 kernel, <span class="math inline">\(b\)</span> is a 9x9 map (the entire board), and <span class="math inline">\(J\)</span> is a 3x3 kernel. However from symmetry we can reduce this to 6 parameters for <span class="math inline">\(w\)</span>, 15 parameters for <span class="math inline">\(b\)</span>, and 2 for <span class="math inline">\(J\)</span>. Total 23. The next step is to find a dataset to train these parameters, and based on the shape of <span class="math inline">\(J\)</span> we will be able to see if Go can be described through ferromagnetic coupling.</p>
+<p>To build the training set I downloaded the KataGo model and made it play about 7000 games against itself, from which I extracted a position in the middle of the game and the final territory assigned once the game was done. Then I trained the parameters with PyTorch to maximize the log likelihood of the final territory in all the games given the model parameters (see <a href="#annex-b">Annex B</a>).</p>
+<p>Once we have the trained parameters we can compare what the model predicts will be the outcome (see <a href="#annex-c">Annex C</a>) given a starting position and compare it to the actual outcome.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/predictions.png" class="img-fluid figure-img"></p>
-<figcaption>A good, a typical and a bad game for the model (games it hadn’t seen during training). Blue is black’s territory, orange white’s; the paler, the less sure the model is.</figcaption>
+<figcaption>Three games from the test set. Blue is black’s territory, orange is white’s.</figcaption>
 </figure>
 </div>
-<p>Doesn’t seem bad at all, but let’s take a look at the parameters. The first thing is that the baseline with no spin coupling already does fairly well, so a big part of the success is due to how we build the external field. From the coupling parameters we also see that orthogonal neighbours couple more strongly than corner neighbours, which makes sense given the rules of the game. In numbers, both models get about 80 % of the points right, so the coupling doesn’t help to guess each point. Where it does help is with the whole board at once: the log-loss of the real final territory is cut in half, because the model knows that territory comes in blocks. You can also see this in the kernel <span class="math inline">\(w\)</span>: without coupling a stone has to paint its surroundings by itself, while with coupling it only paints its own point and <span class="math inline">\(J\)</span> does the rest. And <span class="math inline">\(J = 0.77\)</span> is well above the critical value of the Ising model, <span class="math inline">\(J_c = 0.44\)</span>, which already smells like a magnet.</p>
+<p>This doesn’t seem too bad, but let’s take a look at the parameters. The first thing is that the baseline with no spin coupling already does fairly well, so it’s not immediately clear whether or not coupling is really needed.</p>
+<p>From the coupling parameters we also see that only orthogonal neighbours couple, which makes sense given the rules of the game (although more than I expected).</p>
+<p>In numbers, both models get about 80 % of the points right, so the coupling doesn’t help to guess each point. Where it does help is with the whole board at once: the log-loss of the real final territory is cut in half, because the model knows that territory comes in blocks.</p>
+<p>And <span class="math inline">\(J = 0.77\)</span> is a strong coupling, the textbook 2D Ising model (infinite board, no external field) orders into a magnet above <span class="math inline">\(J \approx 0.44\)</span>. Our board is small and the stones act as a field so this is only a rough reference, but it is something.</p>
 <p><img src="figures/parameters.png" class="img-fluid"></p>
-<section id="is-go-ferromagnetic" class="level2">
-<h2 class="anchored" data-anchor-id="is-go-ferromagnetic">Is Go ferromagnetic?</h2>
-<p>This is all very nice, but let’s now see if we can determine whether or not Go is ferromagnetic. Before trusting <span class="math inline">\(J\)</span> we can look at the games directly: take the model without coupling, and check whether the points it gets wrong are correlated with each other. If the owners of nearby points didn’t drag each other, they wouldn’t be. They are, a lot (<span class="math inline">\(0.56\)</span> between neighbours), but only up close: the correlation is basically gone 4 points away. So strictly speaking Go isn’t a magnet, which needs order over the whole board, but rather a very correlated paramagnet.</p>
-<p><img src="figures/correlation.png" class="img-fluid"></p>
-<p>Part of this is because Go is not exactly an Ising model: whether a group lives or dies is decided all at once and can depend on stones far away, a stone that will be captured pushes its field the wrong way, and the field just adds stones up, while in Go the shape matters a lot.</p>
-<p>Now let’s forget about these silly limitations and see, IF the game of Go was just our fitted Ising model with neighbor coupling, would it be ferromagnetic? The usual way to check is not to see if something is magnetized right now (a piece of iron usually isn’t), but how it responds. One way is the magnetic susceptibility, how much the magnetization changes when you push the whole board with a small field, which is the same as the sum of all the correlations between spins: a ferromagnet has a peak in it at the critical temperature. The other one is hysteresis: push the magnet one way, remove the field, and a ferromagnet stays magnetized. Our model has no temperature, so I gave it one (dividing the energy by <span class="math inline">\(T\)</span>, with <span class="math inline">\(T = 1\)</span> being the trained model) and simulated it on an empty board, with the stones of real games, and with those same stones shuffled randomly.</p>
-<p><img src="figures/temperature_sweep.png" class="img-fluid"></p>
-<p><img src="figures/hysteresis.png" class="img-fluid"></p>
-<p>On an empty board our model is a textbook ferromagnet: a peak at <span class="math inline">\(T_c \approx 1.5\)</span>, and when you remove the field the board stays 96 % magnetized. But with the stones of real games the peak moves down to <span class="math inline">\(T \approx 0.5\)</span>, and at <span class="math inline">\(T = 1\)</span> the hysteresis almost disappears. So the coupling of Go is ferromagnetic, but the stones are such a strong and uneven field that they break the board into blocks, and we’re back to the correlated paramagnet we saw in the games.</p>
+<p>The coupling also changes how the stones create a field. Without coupling the kernel <span class="math inline">\(w\)</span> is a broad blob with large weights even far from the center. Every square is guessed on its own, so a stone has to spread its colour over its whole area of influence by itself. With coupling the kernel is very local and even has a negative weight on its four orthogonal neighbours.</p>
+<p>The bias <span class="math inline">\(b\)</span> is and small noisy but we can recognise some areas and positions that vaguely make sense knowing the game. Again a big change between coupling and non-coupling cases.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/bias.png" class="img-fluid figure-img"></p>
+<figcaption>The bias <span class="math inline">\(b\)</span> on each square from the player to move’s point of view.</figcaption>
+</figure>
+</div>
+<p>Also, the average predictions with and without coupling look very similar, but that’s only the average. If instead we sample two possible endings from each model for the same game they change a lot.</p>
+<p>Without coupling every point is drawn on its own while with coupling you get blobs of the same color like in a real game.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/samples.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Two endings sampled from each model for the first game above.</figcaption>
+</figure>
+</div>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>[Escríbela tú. Idea en una frase: el acoplamiento del Go es de imán, pero las piedras no le dejan serlo.]</p>
+<section id="ferromagnetism" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="ferromagnetism">Ferromagnetism?</h2>
+<p>Of course Go is not Ising. A group lives or dies all at once, a stone that will be captured pushes the wrong way, shape matters and not just the number of stones, our domain is really small, etc etc… Our analogy ends here.</p>
+<p>But we can forget about these silly limitations and imagine a hypothetical where the game of Go was just our fitted Ising model. <strong>Would it be ferromagnetic?</strong></p>
+<p>Let’s see two ways to find a ferromagnet.</p>
+<ol type="1">
+<li><p>Heat it up and at some critical temperature <span class="math inline">\(T_c\)</span> it loses its magnetization, with a peak in the susceptibility (how much the magnetization <span class="math inline">\(M = \sum_i s_i\)</span> responds to small changes).</p></li>
+<li><p>Below <span class="math inline">\(T_c\)</span> if you add an external field and then remove it, it stays magnetized (hysteresis). Our model has no temperature, but we can give it one by dividing the energy by <span class="math inline">\(T\)</span> so that <span class="math inline">\(T = 1\)</span> is the trained model (details in <a href="#annex-d">Annex D</a>).</p></li>
+</ol>
+<p>Let’s start without stones on an empty board (no external field).</p>
+<p class="page-columns page-full"><img src="figures/temperature_sweep.png" class="column-page img-fluid"></p>
+<p>There is a clear peak at <span class="math inline">\(T_c \approx 1.5\)</span>, and our model (<span class="math inline">\(T = 1\)</span>) sits below it, so with no external field it is already magnetized.</p>
+<p><img src="figures/hysteresis.png" class="img-fluid"></p>
+<p>And it has memory. After a push and back to zero field it stays 96 % magnetized, while above <span class="math inline">\(T_c\)</span> (<span class="math inline">\(T = 2.5\)</span>) it just follows the field and forgets it. So the coupling the model learned from Go is, on its own, the coupling of a magnet.</p>
+<p>Again this is not surprising knowing the coupling kernel from the training, but it still learnt that all on its own from looking at games. It could have also learnt a different coupling or no coupling at all.</p>
+</section>
+<section id="the-answer" class="level2">
+<h2 class="anchored" data-anchor-id="the-answer">The answer</h2>
+<p>Yes, but not exactly.</p>
+<p>To end the post here’s a whole game move by move with its corresponding prediction at each point.</p>
+<p>Notice how with few stones (small external field) the whole board leans towards one color like in the empty board case. It starts to get good around the middle (trained on mid-games). Also, towards the end it doesn’t realize the white pieces A4-A5-A6 were dead from the start. Still, it looks nice.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/game.gif" class="img-fluid figure-img"></p>
+<figcaption>A test game move by move, with the prediction of the Ising model at each move. At the end, the real final territory.</figcaption>
+</figure>
+</div>
 </section>
 <section id="annex" class="level2">
 <h2 class="anchored" data-anchor-id="annex">Annex</h2>
-<p><strong>Probability of a configuration.</strong> Each point <span class="math inline">\(i\)</span> has a spin <span class="math inline">\(s_i = \pm 1\)</span>, its final owner, and the stones <span class="math inline">\(X_k\)</span> of the position create the field <span class="math inline">\(h_i = \sum_{k} w(k - i) X_k + b_i\)</span>. The energy (Hamiltonian) of a final territory <span class="math inline">\(s\)</span> and its probability (Boltzmann distribution) are</p>
+<section id="annex-a" class="level3">
+<h3 class="anchored" data-anchor-id="annex-a">A. The model</h3>
+<p>Each point <span class="math inline">\(i\)</span> of the board has a spin <span class="math inline">\(s_i = \pm 1\)</span>, its final owner, seen from the player to move (<span class="math inline">\(+1\)</span> for the player to move, <span class="math inline">\(-1\)</span> for the opponent). Neutral points are left out. The position is <span class="math inline">\(X_k \in \{+1, -1, 0\}\)</span> (own stone, opponent stone, empty). The model is</p>
 <p><span class="math display">\[
-E(s) = -\sum_i h_i s_i - \sum_{\text{neighbours}} J_{ij} s_i s_j , \qquad P(s) = \frac{e^{-E(s)}}{Z}, \qquad Z = \sum_{s} e^{-E(s)} .
+P(s \mid X) = \frac{1}{Z(X)} \exp\Big( \sum_i h_i s_i + \sum_{\langle ij \rangle} J_{ij} s_i s_j \Big),
+\qquad
+h_i = \sum_{\mathbf r} w(\mathbf r)\, X_{i + \mathbf r} + b_i ,
 \]</span></p>
-<p><strong>Likelihood.</strong> We minimize <span class="math inline">\(-\log P(s^\text{real}) = E(s^\text{real}) + \log Z\)</span> over all the games. The annoying part is <span class="math inline">\(Z\)</span>, a sum over <span class="math inline">\(2^{81}\)</span> boards, but since the board is narrow it can be done exactly column by column: a column has only <span class="math inline">\(2^9 = 512\)</span> states and <span class="math inline">\(J\)</span> only connects neighbouring columns, so it’s 9 products of <span class="math inline">\(512 \times 512\)</span> matrices (the transfer matrix). The cheaper trick, pseudo-likelihood, which predicts each point from the real owners of its neighbours, gives a <span class="math inline">\(J\)</span> that is too large and a model that predicts worse.</p>
-<p><strong>Sampling.</strong> To get the expected spins we use Gibbs sampling: start from a random board, redraw each spin with probability <span class="math inline">\(P(s_i = +1) = 1/(1 + e^{-2H_i})\)</span>, where <span class="math inline">\(H_i = h_i + \sum_j J_{ij} s_j\)</span> only depends on its neighbours, and repeat many times. The average of the boards you get is the prediction. On a 9x9 board the transfer matrix also gives the exact expected spins (<span class="math inline">\(\partial \log Z / \partial h_i\)</span>), which agree with the sampling and are much faster.</p>
+<p>where <span class="math inline">\(Z(X)\)</span> is the partition function, a sum over <span class="math inline">\(2^{81}\)</span> configurations. The temperature is absorbed in the parameters (<span class="math inline">\(T = 1\)</span>). The field <span class="math inline">\(h\)</span> is a convolution of the stones with a <span class="math inline">\(5\times5\)</span> kernel <span class="math inline">\(w\)</span> plus a bias <span class="math inline">\(b_i\)</span> per square. <span class="math inline">\(J_{ij}\)</span> is <span class="math inline">\(J_\text{orto}\)</span> for orthogonal neighbours, <span class="math inline">\(J_\text{diag}\)</span> for diagonal ones and <span class="math inline">\(0\)</span> otherwise.</p>
+<p>All parameters are invariant under the 8 symmetries of the board. That leaves 6 values for <span class="math inline">\(w\)</span>, 15 for <span class="math inline">\(b\)</span> and 2 for <span class="math inline">\(J\)</span>, 23 in total.</p>
+<p>If all spins but one are fixed,</p>
+<p><span class="math display">\[
+P(s_i \mid s_{\setminus i}, X) = \sigma(2 s_i H_i),
+\qquad H_i = h_i + \sum_j J_{ij} s_j ,
+\qquad \sigma(z) = \frac{1}{1 + e^{-z}} .
+\]</span></p>
+<p><span class="math inline">\(H_i\)</span> is the local field, the field of the stones plus that of the neighbours. Sampling uses this formula.</p>
+</section>
+<section id="annex-b" class="level3">
+<h3 class="anchored" data-anchor-id="annex-b">B. Training</h3>
+<p>The negative log-likelihood per point is minimized over the 5535 training games,</p>
+<p><span class="math display">\[
+\mathcal L = -\frac{1}{N_\text{points}} \sum_{n} \log P(s^{(n)} \mid X^{(n)}) = \frac{1}{N_\text{points}} \sum_n \Big[ \log Z(X^{(n)}) - \log Z_\text{fixed}(X^{(n)}) \Big],
+\]</span></p>
+<p>where <span class="math inline">\(Z_\text{fixed}\)</span> is the same sum restricted to the configurations that agree with the real owners. The exponent is linear in <span class="math inline">\((w, b, J)\)</span>, so <span class="math inline">\(\mathcal L\)</span> is convex.</p>
+<p><span class="math inline">\(Z\)</span> is computed column by column. A column <span class="math inline">\(\sigma \in \{\pm 1\}^9\)</span> has 512 states, and <span class="math inline">\(J\)</span> only couples neighbouring columns, so</p>
+<p><span class="math display">\[
+Z(X) = \sum_{\sigma_1, \dots, \sigma_9} \prod_{k=1}^{9} e^{\phi_k(\sigma_k)} \prod_{k=1}^{8} e^{\psi(\sigma_k, \sigma_{k+1})},
+\]</span></p>
+<p><span class="math display">\[
+\phi_k(\sigma) = \sum_f h_{f,k}\, \sigma_f + J_\text{orto} \sum_f \sigma_f \sigma_{f+1},
+\qquad
+\psi(\sigma, \sigma') = J_\text{orto} \sum_f \sigma_f \sigma'_f + J_\text{diag} \sum_f \big( \sigma_f \sigma'_{f+1} + \sigma_{f+1} \sigma'_f \big).
+\]</span></p>
+<p>This is a transfer matrix: a vector of 512 entries multiplied 9 times by the <span class="math inline">\(512 \times 512\)</span> matrix <span class="math inline">\(e^{\psi}\)</span> and the diagonal factors <span class="math inline">\(e^{\phi_k}\)</span>. The product is done in log space to avoid overflow. The gradient comes from PyTorch, and LBFGS converges in a few minutes. <span class="math inline">\(Z\)</span> was checked against the brute-force sum on <span class="math inline">\(3\times3\)</span> and <span class="math inline">\(3\times4\)</span> boards. On <span class="math inline">\(13\times13\)</span> there would be 8192 states per column, so this only works for small boards.</p>
+</section>
+<section id="annex-c" class="level3">
+<h3 class="anchored" data-anchor-id="annex-c">C. Prediction</h3>
+<p>The prediction is the magnetization of each point, <span class="math inline">\(m_i = \langle s_i \rangle\)</span>, and <span class="math inline">\(P(\text{player to move owns } i) = (1 + m_i)/2\)</span>. It is computed exactly as <span class="math inline">\(m_i = \partial \log Z / \partial h_i\)</span>, differentiating the transfer matrix computation with PyTorch.</p>
+<p>The sampled endings use Gibbs sampling: each spin is redrawn with <span class="math inline">\(P(s_i = +1 \mid \text{rest}) = \sigma(2H_i)\)</span>, 1000 sweeps from a random board. Without coupling each point is drawn independently with probability <span class="math inline">\((1 + m_i)/2\)</span>.</p>
+</section>
+<section id="annex-d" class="level3">
+<h3 class="anchored" data-anchor-id="annex-d">D. Temperature and hysteresis</h3>
+<p>A temperature is added to the trained model,</p>
+<p><span class="math display">\[
+P_T(s \mid X) = \frac{1}{Z_T} \exp\Big[ \frac{1}{T} \Big( \sum_i h_i s_i + \sum_{\langle ij \rangle} J_{ij} s_i s_j \Big) \Big],
+\]</span></p>
+<p>so <span class="math inline">\(T = 1\)</span> is the trained model. With <span class="math inline">\(M = \sum_i s_i\)</span> and a uniform field <span class="math inline">\(H\)</span> on every point, the susceptibility is</p>
+<p><span class="math display">\[
+\frac{\partial \langle M \rangle}{\partial H} = \frac{1}{T} \big( \langle M^2 \rangle - \langle M \rangle^2 \big).
+\]</span></p>
+<p>On a finite board without field <span class="math inline">\(\langle M \rangle = 0\)</span> by symmetry, so <span class="math inline">\(|M|\)</span> is used instead, per point (<span class="math inline">\(N = 81\)</span>):</p>
+<p><span class="math display">\[
+m = \frac{\langle |M| \rangle}{N}, \qquad \chi = \frac{\langle M^2 \rangle - \langle |M| \rangle^2}{N\, T}.
+\]</span></p>
+<p>On the empty board, Gibbs sampling was run for 31 temperatures between 0.25 and 4, with 256 chains, 300 sweeps of burn-in and 1000 of measurement.</p>
+<p>For the hysteresis, at fixed <span class="math inline">\(T\)</span>, <span class="math inline">\(H\)</span> goes from <span class="math inline">\(-4\)</span> to <span class="math inline">\(+4\)</span> in steps of 0.2 and back, without restarting the chains, with 100 sweeps per step. The remanence is <span class="math inline">\(m\)</span> at <span class="math inline">\(H = 0\)</span> on the way down.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
