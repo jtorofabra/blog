@@ -357,9 +357,9 @@ window.Quarto = {
   <li><a href="#annex" id="toc-annex" class="nav-link" data-scroll-target="#annex">Annex</a>
   <ul class="collapse">
   <li><a href="#annex-a" id="toc-annex-a" class="nav-link" data-scroll-target="#annex-a">A. The model</a></li>
-  <li><a href="#annex-b" id="toc-annex-b" class="nav-link" data-scroll-target="#annex-b">B. Training: exact likelihood with a transfer matrix</a></li>
-  <li><a href="#annex-c" id="toc-annex-c" class="nav-link" data-scroll-target="#annex-c">C. Prediction: expected spins</a></li>
-  <li><a href="#annex-d" id="toc-annex-d" class="nav-link" data-scroll-target="#annex-d">D. Temperature, susceptibility and hysteresis</a></li>
+  <li><a href="#annex-b" id="toc-annex-b" class="nav-link" data-scroll-target="#annex-b">B. Training</a></li>
+  <li><a href="#annex-c" id="toc-annex-c" class="nav-link" data-scroll-target="#annex-c">C. Prediction</a></li>
+  <li><a href="#annex-d" id="toc-annex-d" class="nav-link" data-scroll-target="#annex-d">D. Temperature and hysteresis</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -449,11 +449,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="the-answer">The answer</h2>
 <p>Yes, but not exactly.</p>
 <p>To end the post here’s a whole game move by move with its corresponding prediction at each point.</p>
-<p>Look how it’s best prediction is for around the middle of the game (trained on mid-games) and towards the end it doesn’t realize the white pieces A4-A5-A6 were dead from the start. Still, it looks nice.</p>
+<p>Notice how with few stones (small external field) the whole board leans towards one color like in the empty board case. It starts to get good around the middle (trained on mid-games). Also, towards the end it doesn’t realize the white pieces A4-A5-A6 were dead from the start. Still, it looks nice.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/game.gif" class="img-fluid figure-img"></p>
-<figcaption>A whole test game, move by move, with the prediction of the Ising model at each move. At the end, the real final territory.</figcaption>
+<figcaption>A test game move by move, with the prediction of the Ising model at each move. At the end, the real final territory.</figcaption>
 </figure>
 </div>
 </section>
@@ -461,67 +461,61 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="annex">Annex</h2>
 <section id="annex-a" class="level3">
 <h3 class="anchored" data-anchor-id="annex-a">A. The model</h3>
-<p>Each point <span class="math inline">\(i\)</span> of the <span class="math inline">\(9\times9\)</span> board carries a spin <span class="math inline">\(s_i = \pm 1\)</span>, its final owner, in the perspective of the player to move (<span class="math inline">\(+1\)</span>: the player to move, <span class="math inline">\(-1\)</span>: the opponent; the few neutral points are left out). The position is <span class="math inline">\(X_k \in \{+1, -1, 0\}\)</span> (stone of the player to move, of the opponent, empty). The model is a conditional Ising model, i.e.&nbsp;a Boltzmann distribution whose field depends on the position:</p>
+<p>Each point <span class="math inline">\(i\)</span> of the board has a spin <span class="math inline">\(s_i = \pm 1\)</span>, its final owner, seen from the player to move (<span class="math inline">\(+1\)</span> for the player to move, <span class="math inline">\(-1\)</span> for the opponent). Neutral points are left out. The position is <span class="math inline">\(X_k \in \{+1, -1, 0\}\)</span> (own stone, opponent stone, empty). The model is</p>
 <p><span class="math display">\[
 P(s \mid X) = \frac{1}{Z(X)} \exp\Big( \sum_i h_i s_i + \sum_{\langle ij \rangle} J_{ij} s_i s_j \Big),
 \qquad
 h_i = \sum_{\mathbf r} w(\mathbf r)\, X_{i + \mathbf r} + b_i ,
 \]</span></p>
-<p>with <span class="math inline">\(Z(X) = \sum_s \exp(\cdots)\)</span> the partition function, a sum over <span class="math inline">\(2^{81} \approx 10^{24}\)</span> configurations, and <span class="math inline">\(-\big(\sum_i h_i s_i + \sum_{\langle ij \rangle} J_{ij} s_i s_j\big)\)</span> the Hamiltonian (the temperature is absorbed in the parameters, <span class="math inline">\(T = 1\)</span>). The field is a convolution of the stones with a <span class="math inline">\(5\times5\)</span> kernel <span class="math inline">\(w\)</span> plus a bias <span class="math inline">\(b_i\)</span> per square, and <span class="math inline">\(J_{ij} = J_\text{orto}\)</span> for orthogonal neighbours, <span class="math inline">\(J_\text{diag}\)</span> for diagonal ones and <span class="math inline">\(0\)</span> otherwise. All parameters are invariant under the 8 symmetries of the board (the dihedral group <span class="math inline">\(D_4\)</span>): <span class="math inline">\(w(\mathbf r)\)</span> only depends on <span class="math inline">\((\min(|\Delta x|, |\Delta y|), \max(|\Delta x|, |\Delta y|))\)</span>, 6 classes for <span class="math inline">\(|\Delta x|, |\Delta y| \le 2\)</span>, and <span class="math inline">\(b_i\)</span> is constant on each of the 15 orbits of squares. So <span class="math inline">\(6 + 15 + 2 = 23\)</span> parameters, and the model is equivariant: rotating the position rotates the prediction.</p>
-<p>Fixing all spins but one, only the terms containing <span class="math inline">\(s_i\)</span> survive, and</p>
+<p>where <span class="math inline">\(Z(X)\)</span> is the partition function, a sum over <span class="math inline">\(2^{81}\)</span> configurations. The temperature is absorbed in the parameters (<span class="math inline">\(T = 1\)</span>). The field <span class="math inline">\(h\)</span> is a convolution of the stones with a <span class="math inline">\(5\times5\)</span> kernel <span class="math inline">\(w\)</span> plus a bias <span class="math inline">\(b_i\)</span> per square. <span class="math inline">\(J_{ij}\)</span> is <span class="math inline">\(J_\text{orto}\)</span> for orthogonal neighbours, <span class="math inline">\(J_\text{diag}\)</span> for diagonal ones and <span class="math inline">\(0\)</span> otherwise.</p>
+<p>All parameters are invariant under the 8 symmetries of the board. That leaves 6 values for <span class="math inline">\(w\)</span>, 15 for <span class="math inline">\(b\)</span> and 2 for <span class="math inline">\(J\)</span>, 23 in total.</p>
+<p>If all spins but one are fixed,</p>
 <p><span class="math display">\[
-P(s_i \mid s_{\setminus i}, X) = \frac{e^{s_i H_i}}{2\cosh H_i} = \sigma(2 s_i H_i),
+P(s_i \mid s_{\setminus i}, X) = \sigma(2 s_i H_i),
 \qquad H_i = h_i + \sum_j J_{ij} s_j ,
 \qquad \sigma(z) = \frac{1}{1 + e^{-z}} .
 \]</span></p>
-<p><span class="math inline">\(H_i\)</span> is the local field: what the stones say plus what the neighbours say. Everything below (training, sampling, simulating) is built from this formula.</p>
+<p><span class="math inline">\(H_i\)</span> is the local field, the field of the stones plus that of the neighbours. Sampling uses this formula.</p>
 </section>
 <section id="annex-b" class="level3">
-<h3 class="anchored" data-anchor-id="annex-b">B. Training: exact likelihood with a transfer matrix</h3>
-<p>We minimize the negative log-likelihood per point over the <span class="math inline">\(n = 5535\)</span> training games,</p>
+<h3 class="anchored" data-anchor-id="annex-b">B. Training</h3>
+<p>The negative log-likelihood per point is minimized over the 5535 training games,</p>
 <p><span class="math display">\[
 \mathcal L = -\frac{1}{N_\text{points}} \sum_{n} \log P(s^{(n)} \mid X^{(n)}) = \frac{1}{N_\text{points}} \sum_n \Big[ \log Z(X^{(n)}) - \log Z_\text{fixed}(X^{(n)}) \Big],
 \]</span></p>
-<p>where <span class="math inline">\(Z_\text{fixed}\)</span> is the same sum restricted to the configurations that agree with the real owners (neutral points are summed over). Since the exponent is linear in <span class="math inline">\((w, b, J)\)</span>, this is an exponential family: <span class="math inline">\(\mathcal L\)</span> is convex, and its gradient is the difference between the averages of the features in the data and in the model.</p>
-<p>The hard part is <span class="math inline">\(Z\)</span>. Go through the board column by column: a column <span class="math inline">\(\sigma \in \{\pm 1\}^9\)</span> has <span class="math inline">\(2^9 = 512\)</span> states, and <span class="math inline">\(J\)</span> only couples neighbouring columns (diagonals included). Then</p>
+<p>where <span class="math inline">\(Z_\text{fixed}\)</span> is the same sum restricted to the configurations that agree with the real owners. The exponent is linear in <span class="math inline">\((w, b, J)\)</span>, so <span class="math inline">\(\mathcal L\)</span> is convex.</p>
+<p><span class="math inline">\(Z\)</span> is computed column by column. A column <span class="math inline">\(\sigma \in \{\pm 1\}^9\)</span> has 512 states, and <span class="math inline">\(J\)</span> only couples neighbouring columns, so</p>
 <p><span class="math display">\[
 Z(X) = \sum_{\sigma_1, \dots, \sigma_9} \prod_{k=1}^{9} e^{\phi_k(\sigma_k)} \prod_{k=1}^{8} e^{\psi(\sigma_k, \sigma_{k+1})},
 \]</span></p>
 <p><span class="math display">\[
 \phi_k(\sigma) = \sum_f h_{f,k}\, \sigma_f + J_\text{orto} \sum_f \sigma_f \sigma_{f+1},
 \qquad
-\psi(\sigma, \sigma') = J_\text{orto} \sum_f \sigma_f \sigma'_f + J_\text{diag} \sum_f \big( \sigma_f \sigma'_{f+1} + \sigma_{f+1} \sigma'_f \big),
+\psi(\sigma, \sigma') = J_\text{orto} \sum_f \sigma_f \sigma'_f + J_\text{diag} \sum_f \big( \sigma_f \sigma'_{f+1} + \sigma_{f+1} \sigma'_f \big).
 \]</span></p>
-<p>which is a Markov chain of 9 links: <span class="math inline">\(Z\)</span> is obtained by multiplying a vector of 512 entries 9 times by the <span class="math inline">\(512 \times 512\)</span> matrix <span class="math inline">\(e^{\psi}\)</span> (which only depends on <span class="math inline">\(J\)</span>) and by the diagonal factors <span class="math inline">\(e^{\phi_k}\)</span> (where the stones enter). In practice it is done in log space, subtracting the maximum at each step so that nothing overflows. For all the training games, <span class="math inline">\(\mathcal L\)</span> and its gradient (by automatic differentiation in PyTorch) take about one second, and LBFGS reaches the optimum (gradient <span class="math inline">\(\sim 10^{-7}\)</span>) in a few minutes. I checked the implementation against the brute-force sum on <span class="math inline">\(3\times3\)</span> and <span class="math inline">\(3\times4\)</span> boards (differences of <span class="math inline">\(10^{-15}\)</span>). This only works because the board is narrow: on <span class="math inline">\(13\times13\)</span> there would be 8192 states per column, and on <span class="math inline">\(19\times19\)</span> about half a million.</p>
+<p>This is a transfer matrix: a vector of 512 entries multiplied 9 times by the <span class="math inline">\(512 \times 512\)</span> matrix <span class="math inline">\(e^{\psi}\)</span> and the diagonal factors <span class="math inline">\(e^{\phi_k}\)</span>. The product is done in log space to avoid overflow. The gradient comes from PyTorch, and LBFGS converges in a few minutes. <span class="math inline">\(Z\)</span> was checked against the brute-force sum on <span class="math inline">\(3\times3\)</span> and <span class="math inline">\(3\times4\)</span> boards. On <span class="math inline">\(13\times13\)</span> there would be 8192 states per column, so this only works for small boards.</p>
 </section>
 <section id="annex-c" class="level3">
-<h3 class="anchored" data-anchor-id="annex-c">C. Prediction: expected spins</h3>
-<p>The prediction is the magnetization of each point, <span class="math inline">\(m_i = \langle s_i \rangle = \sum_s s_i\, P(s \mid X)\)</span>, with <span class="math inline">\(P(\text{player to move owns } i) = (1 + m_i)/2\)</span>. Two ways to get it:</p>
-<ul>
-<li><strong>Exact.</strong> <span class="math inline">\(m_i = \partial \log Z / \partial h_i\)</span>. Differentiating the transfer-matrix computation of <span class="math inline">\(\log Z\)</span> is exactly the forward–backward algorithm of a hidden Markov model, and PyTorch does it for free: a fraction of a second for the 1436 test games.</li>
-<li><strong>Gibbs sampling.</strong> Start from a random board and redraw each spin with <span class="math inline">\(P(s_i = +1 \mid \text{rest}) = \sigma(2H_i)\)</span>. With orthogonal and diagonal neighbours, the 4 sublattices (even/odd row <span class="math inline">\(\times\)</span> even/odd column) have no neighbours inside themselves, so each sublattice is updated at once. After a burn-in, the boards follow <span class="math inline">\(P(s \mid X)\)</span>, and <span class="math inline">\(m_i\)</span> is the average of <span class="math inline">\(s_i\)</span>. With long chains it agrees with the exact result (mean difference 0.016), but it is thousands of times slower, and close to a phase transition the chains mix slowly.</li>
-</ul>
-<p>The predictions in the post are the exact ones. The sampled endings are single Gibbs boards after 1000 sweeps; without coupling every point is just drawn independently with probability <span class="math inline">\((1 + m_i)/2\)</span>.</p>
+<h3 class="anchored" data-anchor-id="annex-c">C. Prediction</h3>
+<p>The prediction is the magnetization of each point, <span class="math inline">\(m_i = \langle s_i \rangle\)</span>, and <span class="math inline">\(P(\text{player to move owns } i) = (1 + m_i)/2\)</span>. It is computed exactly as <span class="math inline">\(m_i = \partial \log Z / \partial h_i\)</span>, differentiating the transfer matrix computation with PyTorch.</p>
+<p>The sampled endings use Gibbs sampling: each spin is redrawn with <span class="math inline">\(P(s_i = +1 \mid \text{rest}) = \sigma(2H_i)\)</span>, 1000 sweeps from a random board. Without coupling each point is drawn independently with probability <span class="math inline">\((1 + m_i)/2\)</span>.</p>
 </section>
 <section id="annex-d" class="level3">
-<h3 class="anchored" data-anchor-id="annex-d">D. Temperature, susceptibility and hysteresis</h3>
-<p><strong>Temperature.</strong> We take the trained parameters and put back a temperature,</p>
+<h3 class="anchored" data-anchor-id="annex-d">D. Temperature and hysteresis</h3>
+<p>A temperature is added to the trained model,</p>
 <p><span class="math display">\[
 P_T(s \mid X) = \frac{1}{Z_T} \exp\Big[ \frac{1}{T} \Big( \sum_i h_i s_i + \sum_{\langle ij \rangle} J_{ij} s_i s_j \Big) \Big],
 \]</span></p>
-<p>so <span class="math inline">\(T = 1\)</span> is the trained model. For the board without stones (<span class="math inline">\(h = 0\)</span>) and only orthogonal neighbours this is exactly the 2D Ising model with <span class="math inline">\(K = J_\text{orto}/T\)</span>.</p>
-<p><strong>Susceptibility.</strong> With <span class="math inline">\(M = \sum_i s_i\)</span> (the score of the game before komi), add a uniform field <span class="math inline">\(H\)</span> to every point. Differentiating <span class="math inline">\(\log Z_T\)</span> twice with respect to <span class="math inline">\(H\)</span>:</p>
+<p>so <span class="math inline">\(T = 1\)</span> is the trained model. With <span class="math inline">\(M = \sum_i s_i\)</span> and a uniform field <span class="math inline">\(H\)</span> on every point, the susceptibility is</p>
 <p><span class="math display">\[
-\frac{\partial \langle M \rangle}{\partial H} = \frac{1}{T} \big( \langle M^2 \rangle - \langle M \rangle^2 \big) = \frac{1}{T} \sum_{i,j} C_{ij} ,
-\qquad C_{ij} = \langle s_i s_j \rangle - \langle s_i \rangle \langle s_j \rangle,
+\frac{\partial \langle M \rangle}{\partial H} = \frac{1}{T} \big( \langle M^2 \rangle - \langle M \rangle^2 \big).
 \]</span></p>
-<p>the fluctuation–dissipation relation: the response to a push equals the fluctuations, which are the sum of all the correlations. On a finite board without field <span class="math inline">\(\langle M \rangle = 0\)</span> by symmetry at every <span class="math inline">\(T\)</span>, so the standard finite-size estimators use <span class="math inline">\(|M|\)</span> instead, per point (<span class="math inline">\(N = 81\)</span>):</p>
+<p>On a finite board without field <span class="math inline">\(\langle M \rangle = 0\)</span> by symmetry, so <span class="math inline">\(|M|\)</span> is used instead, per point (<span class="math inline">\(N = 81\)</span>):</p>
 <p><span class="math display">\[
 m = \frac{\langle |M| \rangle}{N}, \qquad \chi = \frac{\langle M^2 \rangle - \langle |M| \rangle^2}{N\, T}.
 \]</span></p>
-<p><span class="math inline">\(m\)</span> is the order parameter (1 for a board of one colour) and <span class="math inline">\(\chi\)</span> peaks at the (finite-size) critical temperature.</p>
-<p><strong>Simulation.</strong> Gibbs sampling with 300 sweeps of burn-in and 1000 of measurement: on the empty board for 31 temperatures from 0.25 to 4, with 256 chains.</p>
-<p><strong>Hysteresis.</strong> At fixed <span class="math inline">\(T\)</span>, <span class="math inline">\(H\)</span> is increased from <span class="math inline">\(-4\)</span> to <span class="math inline">\(+4\)</span> in steps of 0.2 and decreased back, without restarting the chains (100 sweeps per step, half of them to relax and half to measure). The remanence is <span class="math inline">\(m\)</span> at <span class="math inline">\(H = 0\)</span> on the way down. The loop depends on how slowly <span class="math inline">\(H\)</span> moves (dynamic hysteresis).</p>
+<p>On the empty board, Gibbs sampling was run for 31 temperatures between 0.25 and 4, with 256 chains, 300 sweeps of burn-in and 1000 of measurement.</p>
+<p>For the hysteresis, at fixed <span class="math inline">\(T\)</span>, <span class="math inline">\(H\)</span> goes from <span class="math inline">\(-4\)</span> to <span class="math inline">\(+4\)</span> in steps of 0.2 and back, without restarting the chains, with 100 sweeps per step. The remanence is <span class="math inline">\(m\)</span> at <span class="math inline">\(H = 0\)</span> on the way down.</p>
 
 
 </section>
