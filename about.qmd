@@ -12,3 +12,12 @@ about:
 ---
 
 Hello! My name is Juan Toro Fabra and this is my personal blog. I'm a physics student at EPFL, originally from Madrid, Spain. I will be using this blog to share some ideas I come across, mainly related to physics/math but also hopefully some other things as well.
+
+::: {.about-gallery}
+![](aboutimages/aboutblog1.jpeg)
+![](aboutimages/aboutblog2.jpeg)
+![](aboutimages/aboutblog3.jpeg)
+![](aboutimages/aboutblog4.jpeg)
+![](aboutimages/aboutblog6.jpeg)
+![](aboutimages/aboutblog7.jpeg)
+:::
