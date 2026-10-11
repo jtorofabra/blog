@@ -25,3 +25,6 @@ Thumbs.db
 .idea/
 *.swp
 ideas.txt
+
+# Resultados generados por Quarto (se regeneran al renderizar)
+/_freeze/
