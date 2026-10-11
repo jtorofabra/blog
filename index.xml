@@ -13,7 +13,7 @@
 <lastBuildDate>Sat, 10 Oct 2026 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Everybody lives in Ecuador</title>
-  <link>https://juantorofabra.com/posts/nsphere/volumensphere10.html</link>
+  <link>https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador.html</link>
   <description><![CDATA[ 
 
 
@@ -23,24 +23,24 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/sandiadimensional2.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/sandiadimensional2.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
 <figcaption>Artistic rendition of a high-dimensional watermelon</figcaption>
 </figure>
 </div>
-<p>Pick a point uniformly at random in the unit ball of <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5En">. For high enough <img src="https://latex.codecogs.com/png.latex?n"> this point will practically always fall along the surface, i.e.&nbsp;high-dimensional watermelons have no red part. But not only that, this is also true for the equators of high dimensional spheres. Let’s see why.</p>
+<p>Pick a point uniformly at random in the unit ball of <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5En">. For high enough <img src="https://latex.codecogs.com/png.latex?n"> this point will practically always fall along the surface, i.e.&nbsp;high-dimensional watermelons have no red part. But not only that, this is also true for the equators of high-dimensional spheres. Let’s see why.</p>
 <section id="warm-up-the-surface" class="level2">
 <h2 class="anchored" data-anchor-id="warm-up-the-surface">Warm-up: the surface</h2>
-<p>First, the claim from the introduction: a random point in the unit ball is practically always near its surface. Since we choose the point uniformly at random, the chance of being near the surface is the same as the volume of a thin shell of width <img src="https://latex.codecogs.com/png.latex?%5Cvarepsilon"> near the surface. Like an onion.</p>
+<p>First: a random point in the unit ball is practically always near its surface. Since we choose the point uniformly at random, the chance of being near the surface is the same as the volume of a thin shell of width <img src="https://latex.codecogs.com/png.latex?%5Cvarepsilon"> near the surface. Like an onion.</p>
 <p>Shrinking the unit ball by a factor <img src="https://latex.codecogs.com/png.latex?1-%5Cvarepsilon"> gives exactly <img src="https://latex.codecogs.com/png.latex?%5C%7B%5C%7Cx%5C%7C%20%5Cle%201-%5Cvarepsilon%5C%7D">, and shrinking multiplies volumes by <img src="https://latex.codecogs.com/png.latex?1-%5Cvarepsilon"> once per coordinate, so</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%20P(%5C%7Cx%5C%7C%20%5Cle%201-%5Cvarepsilon)%20=%20(1-%5Cvarepsilon)%5En%20%5Clongrightarrow%200.%0A"></p>
 <p>For <img src="https://latex.codecogs.com/png.latex?%5Cvarepsilon%20=%200.01"> and <img src="https://latex.codecogs.com/png.latex?n=3"> the inner part holds <img src="https://latex.codecogs.com/png.latex?97%5C%25"> of the volume, for <img src="https://latex.codecogs.com/png.latex?n=100"> it holds <img src="https://latex.codecogs.com/png.latex?37%5C%25"> and for <img src="https://latex.codecogs.com/png.latex?n=1000"> it holds <img src="https://latex.codecogs.com/png.latex?0.004%5C%25">. The rest lies in the thin shell <img src="https://latex.codecogs.com/png.latex?1-%5Cvarepsilon%20%3C%20%5C%7Cx%5C%7C%20%5Cle%201"> near the surface.</p>
-<p>Sampling random points shows it directly. Their distance to the centre has density <img src="https://latex.codecogs.com/png.latex?n%20r%5E%7Bn-1%7D"> (the derivative of <img src="https://latex.codecogs.com/png.latex?r%5En">), and as <img src="https://latex.codecogs.com/png.latex?n"> grows it gets closer and closer to <img src="https://latex.codecogs.com/png.latex?r%20=%201">.</p>
-<div id="8d086721" class="cell" data-execution_count="2">
+<p>If we sample points, their distance to the center has density <img src="https://latex.codecogs.com/png.latex?n%20r%5E%7Bn-1%7D"> (the derivative of <img src="https://latex.codecogs.com/png.latex?r%5En">), and as <img src="https://latex.codecogs.com/png.latex?n"> grows it gets closer and closer to <img src="https://latex.codecogs.com/png.latex?r%20=%201">.</p>
+<div id="ca557d08" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/volumensphere10_files/figure-html/cell-3-output-1.png" width="600" height="313" class="figure-img"></p>
-<figcaption>Distance to the centre of uniform points in the ball. Black curves are the exact density n r^(n-1). Log vertical axis.</figcaption>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador_files/figure-html/cell-3-output-1.png" width="600" height="313" class="figure-img"></p>
+<figcaption>Distance to the center of uniform points in the ball. Black curves are the exact density n r^(n-1). Log vertical axis.</figcaption>
 </figure>
 </div>
 </div>
@@ -48,38 +48,38 @@
 </section>
 <section id="setup-for-the-equator" class="level2">
 <h2 class="anchored" data-anchor-id="setup-for-the-equator">Setup for the equator</h2>
-<p>Now let’s define what equator means. For a given unit vector <img src="https://latex.codecogs.com/png.latex?e_1">, the <strong>equator</strong> is the hyperplane <img src="https://latex.codecogs.com/png.latex?%5C%7Bx_1%20=%200%5C%7D">, and the <strong>latitude</strong> of a point is its coordinate <img src="https://latex.codecogs.com/png.latex?x_1">. Being close to the equator means having <img src="https://latex.codecogs.com/png.latex?%7Cx_1%7C%20%3C%20%5Cdelta"> for some <img src="https://latex.codecogs.com/png.latex?%5Cdelta%20%3E%200">.</p>
-<p>In <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5E3"> the equator of a sphere (<img src="https://latex.codecogs.com/png.latex?S%5E2">) is a circunference (<img src="https://latex.codecogs.com/png.latex?S%5E1">), which feels like a very small part. But in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5En"> the equator of <img src="https://latex.codecogs.com/png.latex?S%5E%7Bn-1%7D"> is an <img src="https://latex.codecogs.com/png.latex?S%5E%7Bn-2%7D">. It only loses <strong>one</strong> dimension out of <img src="https://latex.codecogs.com/png.latex?n">, and in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5E%7B100000000%7D"> losing one dimension out of a hundred million may not matter as much.</p>
+<p>Now let’s define what equator means. For a given unit vector <img src="https://latex.codecogs.com/png.latex?e_1">, the <em>equator</em> is the hyperplane <img src="https://latex.codecogs.com/png.latex?%5C%7Bx_1%20=%200%5C%7D">, and the <em>latitude</em> of a point is its coordinate <img src="https://latex.codecogs.com/png.latex?x_1">. Being close to the equator means having <img src="https://latex.codecogs.com/png.latex?%7Cx_1%7C%20%3C%20%5Cdelta"> for some <img src="https://latex.codecogs.com/png.latex?%5Cdelta%20%3E%200">.</p>
+<p>In <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5E3"> the equator of a sphere (<img src="https://latex.codecogs.com/png.latex?S%5E2">) is a circle (<img src="https://latex.codecogs.com/png.latex?S%5E1">), which feels like a very small part. But in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5En"> the equator of <img src="https://latex.codecogs.com/png.latex?S%5E%7Bn-1%7D"> is an <img src="https://latex.codecogs.com/png.latex?S%5E%7Bn-2%7D">. It only loses one dimension out of <img src="https://latex.codecogs.com/png.latex?n">, and in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5E%7B100000000%7D"> losing one dimension out of a hundred million may not matter as much.</p>
 </section>
 <section id="slices-and-slabs" class="level2">
 <h2 class="anchored" data-anchor-id="slices-and-slabs">Slices and slabs</h2>
-<p>Where does the random point’s latitude <img src="https://latex.codecogs.com/png.latex?x_1"> tend to land? It falls between <img src="https://latex.codecogs.com/png.latex?t"> and <img src="https://latex.codecogs.com/png.latex?t+dt"> with probability proportional to the volume of the thin slab <img src="https://latex.codecogs.com/png.latex?%7Bt%20%3C%20x_1%20%3C%20t+dt%7D"> of the ball. The slab is approximately an <img src="https://latex.codecogs.com/png.latex?(n-1)">-dimensional ball of radius <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B1-t%5E2%7D"> with thickness <img src="https://latex.codecogs.com/png.latex?dt">, so its volume is proportional to <img src="https://latex.codecogs.com/png.latex?%5Cbig(%5Csqrt%7B1-t%5E2%7D%5Cbig)%5E%7Bn-1%7Ddt%20=%0A(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D%5C,dt">. Hence the latitude has density</p>
+<p>Where does the random point’s latitude <img src="https://latex.codecogs.com/png.latex?x_1"> tend to land? It falls between <img src="https://latex.codecogs.com/png.latex?t"> and <img src="https://latex.codecogs.com/png.latex?t+dt"> with probability proportional to the volume of the thin slab <img src="https://latex.codecogs.com/png.latex?%5C%7Bt%20%3C%20x_1%20%3C%20t+dt%5C%7D"> of the ball. The slab is approximately an <img src="https://latex.codecogs.com/png.latex?(n-1)">-dimensional ball of radius <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B1-t%5E2%7D"> with thickness <img src="https://latex.codecogs.com/png.latex?dt">, so its volume is proportional to <img src="https://latex.codecogs.com/png.latex?%5Cbig(%5Csqrt%7B1-t%5E2%7D%5Cbig)%5E%7Bn-1%7Ddt%20=%0A(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D%5C,dt">. Hence the latitude has density</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Af_n(t)%20=%20c_n%5C,(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D,%0A"></p>
-<p>where <img src="https://latex.codecogs.com/png.latex?c_n"> is some function of <img src="https://latex.codecogs.com/png.latex?n"> (we don’t care). We will use it shortly. Also, be careful, the diagram is in 3D but the calculation is for an arbitrary number os dimensions <img src="https://latex.codecogs.com/png.latex?n">.</p>
-<div id="293806fa" class="cell" data-execution_count="3">
+<p>where <img src="https://latex.codecogs.com/png.latex?c_n"> is some function of <img src="https://latex.codecogs.com/png.latex?n"> (we don’t care). We will use it shortly. Also, be careful, the diagram is in 3D but the calculation is for an arbitrary number of dimensions <img src="https://latex.codecogs.com/png.latex?n">.</p>
+<div id="f7bb49c8" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/volumensphere10_files/figure-html/cell-4-output-1.png" width="803" height="374" class="figure-img"></p>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador_files/figure-html/cell-4-output-1.png" width="803" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Now let’s find the variance of the latitude <img src="https://latex.codecogs.com/png.latex?x_1">. Since <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20E%5Bx_1%5D%5E2=0"> is clearly zero, the variance is <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20E%5Bx_1%5E2%5D">. We also have that <img src="https://latex.codecogs.com/png.latex?n%5Cmathbb%20E%5Bx%5E2_1%5D=%5Cmathbb%20E%5B%5Csum%5En_i%20x_i%5E2%5D%20=%20%5Cint_0%5E1%20r%5E2%5C,%20n%20r%5E%7Bn-1%7D%5C,dr%20=%20n%20%5Cint%5E0_1%20r%5E%7Bn+1%7D%5C,dr%20=%20%5Cfrac%7Bn%7D%7Bn+2%7D"> so Var<img src="https://latex.codecogs.com/png.latex?(x_1)%20=%20%5Cfrac%7B1%7D%7Bn+2%7D">.</p>
+<p>Now let’s find the variance of the latitude <img src="https://latex.codecogs.com/png.latex?x_1">. Since <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20E%5Bx_1%5D=0"> by symmetry, the variance is <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20E%5Bx_1%5E2%5D">. We also have that <img src="https://latex.codecogs.com/png.latex?n%5Cmathbb%20E%5Bx%5E2_1%5D=%5Cmathbb%20E%5B%5Csum%5En_i%20x_i%5E2%5D%20=%20%5Cint_0%5E1%20r%5E2%5C,%20n%20r%5E%7Bn-1%7D%5C,dr%20=%20n%20%5Cint_0%5E1%20r%5E%7Bn+1%7D%5C,dr%20=%20%5Cfrac%7Bn%7D%7Bn+2%7D"> so Var<img src="https://latex.codecogs.com/png.latex?(x_1)%20=%20%5Cfrac%7B1%7D%7Bn+2%7D">.</p>
 <p>For large <img src="https://latex.codecogs.com/png.latex?n"> we then have <img src="https://latex.codecogs.com/png.latex?x_1%20%5Csim%20%5Cfrac%7B1%7D%7B%5Csqrt%20n%7D">, so <img src="https://latex.codecogs.com/png.latex?t%5E2"> is small and <img src="https://latex.codecogs.com/png.latex?f_n(t)%20=%20(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D=%5Cexp%5C!%5Cbig(%5Ctfrac%7Bn-1%7D%7B2%7D%5Cln(1-t%5E2)%5Cbig)%5Capprox%20e%5E%7B-(n-1)t%5E2/2%7D">, which is a Gaussian. Hence</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Ax_1%20%5Capprox%20%5Cmathcal%20N%5C!%5Cleft(0,%20%5Ctfrac1n%5Cright).%0A"></p>
 <p>Here is the latitude of sampled points: for <img src="https://latex.codecogs.com/png.latex?n=3"> it follows <img src="https://latex.codecogs.com/png.latex?f_n"> but is far from Gaussian, while for <img src="https://latex.codecogs.com/png.latex?n=20"> and <img src="https://latex.codecogs.com/png.latex?n=200"> it is indistinguishable from <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%20N(0,1/(n))"> and narrower each time.</p>
-<div id="214402ea" class="cell" data-execution_count="4">
+<div id="86cd9b6c" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/volumensphere10_files/figure-html/cell-5-output-1.png" width="952" height="278" class="figure-img"></p>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador_files/figure-html/cell-5-output-1.png" width="952" height="278" class="figure-img"></p>
 <figcaption>Latitude of uniform points in the ball, against the exact density f_n and the normal approximation.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>To see what this means, take the slab <img src="https://latex.codecogs.com/png.latex?%5C%7Cx_1%5C%7C%20%3C%200.01">, just 1% of the diameter. Let’s see what percentage of the volume sits inside this slab for different dimensions <img src="https://latex.codecogs.com/png.latex?n">:</p>
+<p>To see what this means, take the slab <img src="https://latex.codecogs.com/png.latex?%7Cx_1%7C%20%3C%200.01">, just 1% of the diameter. Let’s see what percentage of the volume is inside this slab for different dimensions <img src="https://latex.codecogs.com/png.latex?n">:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -118,54 +118,54 @@
 </tr>
 </tbody>
 </table>
-<p>So as <img src="https://latex.codecogs.com/png.latex?n"> grows, a thin slab around the equator holds almost all of the volume, and by symmetry this does not depend on which equator we chose.</p>
+<p>So as <img src="https://latex.codecogs.com/png.latex?n"> grows, a thin slab around the equator holds almost all of the volume, and by symmetry this does not depend on which equator we choose.</p>
 </section>
 <section id="close-to-every-equator-at-once" class="level2">
 <h2 class="anchored" data-anchor-id="close-to-every-equator-at-once">Close to every equator at once?</h2>
-<p>But now we run into an issue: if most of the mass sits in the slab around one equator, how can it also sit in the slab around a different one? In reality it isn’t a problem, because the slabs overlap.</p>
+<p>But now we run into an issue: if most of the mass is in the slab around one equator, how can it also sit in the slab around a different one?? In reality it isn’t a problem, because the slabs overlap.</p>
 <p>Take two different equators and the slabs around them. They both miss the same fraction of the total volume of the ball, let’s call it <img src="https://latex.codecogs.com/png.latex?p">. The probability of being in both slabs is at least <img src="https://latex.codecogs.com/png.latex?1-2p">, which is still very close to 1 because we already know <img src="https://latex.codecogs.com/png.latex?p"> is very small.</p>
 <p>This is just the union bound: a point outside the intersection of the slabs <img src="https://latex.codecogs.com/png.latex?S_1,%20%5Cdots,%20S_k"> must be outside at least one of them, so</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%20P%5CBig(x%20%5Cnotin%20%5Cbigcap_%7Bj=1%7D%5Ek%20S_j%5CBig)%20%5Cle%20%5Csum_%7Bj=1%7D%5Ek%20%5Cmathbb%20P(x%20%5Cnotin%20S_j)%20=%20kp%0A%5Cquad%5CLongrightarrow%5Cquad%0A%5Cmathbb%20P%5CBig(x%20%5Cin%20%5Cbigcap_%7Bj=1%7D%5Ek%20S_j%5CBig)%20%5Cge%201-kp%20.%0A"></p>
-<p>Since <img src="https://latex.codecogs.com/png.latex?p"> shrinks exponentially as <img src="https://latex.codecogs.com/png.latex?n"> grows, for large enough <img src="https://latex.codecogs.com/png.latex?n"> the bound <img src="https://latex.codecogs.com/png.latex?1-kp"> stays close to 1 even for many equators: a random point is near all of them at once.</p>
-<p>For example, in <img src="https://latex.codecogs.com/png.latex?n%20=%2010%5C,000"> dimensions 99.5% of the points lie within 0.05 of all ten thousand coordinate equators at once, i.e.&nbsp;they have no coordinate larger than <img src="https://latex.codecogs.com/png.latex?0.05">. Practically all of them, while their mean distance to the centre is <img src="https://latex.codecogs.com/png.latex?n/(n+1)%20%5Capprox%200.9999">.</p>
-<p>Of course we still need a finite number of equators and a high enough dimension <img src="https://latex.codecogs.com/png.latex?n">, but the point is that the equator slabs are far from disjoint. In 3D two equators of the sphere only meet only at two antipodal points, but in <img src="https://latex.codecogs.com/png.latex?n"> dimensions the intersection of <img src="https://latex.codecogs.com/png.latex?k"> equators is a whole sphere <img src="https://latex.codecogs.com/png.latex?S%5E%7Bn-1-k%7D">, still huge when <img src="https://latex.codecogs.com/png.latex?k%20%5Cll%20n">.</p>
+<p>Since <img src="https://latex.codecogs.com/png.latex?p"> shrinks exponentially as <img src="https://latex.codecogs.com/png.latex?n"> grows, for large enough <img src="https://latex.codecogs.com/png.latex?n"> the bound <img src="https://latex.codecogs.com/png.latex?1-kp"> stays close to 1 even for many equators and a random point is near all of them at once.</p>
+<p>For example, in <img src="https://latex.codecogs.com/png.latex?n%20=%2010%5C,000"> dimensions 99.5% of the points lie within 0.05 of all ten thousand coordinate equators at once, i.e.&nbsp;they have no coordinate larger than <img src="https://latex.codecogs.com/png.latex?0.05">. Practically all of them, while their mean distance to the center is <img src="https://latex.codecogs.com/png.latex?n/(n+1)%20%5Capprox%200.9999">.</p>
+<p>Of course we still need a finite number of equators and a high enough dimension <img src="https://latex.codecogs.com/png.latex?n">, but the point is that the equator slabs are far from disjoint. In 3D two equators of the sphere only meet at two antipodal points, but in <img src="https://latex.codecogs.com/png.latex?n"> dimensions the intersection of <img src="https://latex.codecogs.com/png.latex?k"> equators is a whole sphere <img src="https://latex.codecogs.com/png.latex?S%5E%7Bn-1-k%7D">, still huge when <img src="https://latex.codecogs.com/png.latex?k%20%5Cll%20n">.</p>
 </section>
 <section id="the-shadow" class="level2">
 <h2 class="anchored" data-anchor-id="the-shadow">The shadow</h2>
-<p>To illustrate this, take each sampled point and keep only its first two coordinates <img src="https://latex.codecogs.com/png.latex?(x_1,%20x_2)">: that is its projection on a plane, like the shadow of a ball on the floor. Below, each dot is the shadow of one point, and its colour is that point’s true distance to the centre, <img src="https://latex.codecogs.com/png.latex?%5C%7Cx%5C%7C">, computed with all <img src="https://latex.codecogs.com/png.latex?n"> coordinates: yellow means the point sits on the surface, purple means it sits near the centre.</p>
-<div id="a123836d" class="cell" data-execution_count="5">
+<p>To illustrate this, take each sampled point and keep only its first two coordinates <img src="https://latex.codecogs.com/png.latex?(x_1,%20x_2)"> i.e.&nbsp;project it on a planem like the shadow of a ball on the floor. Below, each dot is the shadow of one point, and its color is that point’s true distance to the center, <img src="https://latex.codecogs.com/png.latex?%5C%7Cx%5C%7C">, computed with all <img src="https://latex.codecogs.com/png.latex?n"> coordinates: yellow means the point is on the surface, purple means it is near the center.</p>
+<div id="36c33ad3" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/volumensphere10_files/figure-html/cell-6-output-1.png" width="712" height="245" class="figure-img"></p>
-<figcaption>Shadows of uniform points of the ball on the (x1, x2) plane. Colour is each point’s true distance to the centre, |x|.</figcaption>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador_files/figure-html/cell-6-output-1.png" width="712" height="245" class="figure-img"></p>
+<figcaption>Shadows of uniform points of the ball on the (x1, x2) plane. Color is each point’s true distance to the center, |x|.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>For <img src="https://latex.codecogs.com/png.latex?n=3"> the shadow fills the disk and the colours are mixed: a dot in the middle of the disk may come from the centre of the ball or from one of its poles. At <img src="https://latex.codecogs.com/png.latex?n=300"> every dot is yellow, so every point sits close to the surface, and yet the shadows form a tiny cloud in the middle. The distance to the centre comes from the other <img src="https://latex.codecogs.com/png.latex?298"> coordinates, which the shadow cannot see. Since <img src="https://latex.codecogs.com/png.latex?x_1"> and <img src="https://latex.codecogs.com/png.latex?x_2"> are both small, every point is close to the equators <img src="https://latex.codecogs.com/png.latex?%5C%7Bx_1=0%5C%7D"> and <img src="https://latex.codecogs.com/png.latex?%5C%7Bx_2=0%5C%7D"> at once.</p>
+<p>For <img src="https://latex.codecogs.com/png.latex?n=3"> the shadow fills the disk and the colors are mixed: a dot in the middle of the disk may come from the center of the ball or from one of its poles. At <img src="https://latex.codecogs.com/png.latex?n=300"> every dot is yellow, so every point sits close to the surface, and yet the shadows form a tiny cloud in the middle. The distance to the center comes from the other <img src="https://latex.codecogs.com/png.latex?298"> coordinates, which the shadow cannot see. Since <img src="https://latex.codecogs.com/png.latex?x_1"> and <img src="https://latex.codecogs.com/png.latex?x_2"> are both small, every point is close to the equators <img src="https://latex.codecogs.com/png.latex?%5C%7Bx_1=0%5C%7D"> and <img src="https://latex.codecogs.com/png.latex?%5C%7Bx_2=0%5C%7D"> at the same time.</p>
 </section>
 <section id="everyone-is-on-everyones-equator" class="level2">
 <h2 class="anchored" data-anchor-id="everyone-is-on-everyones-equator">Everyone is on everyone’s equator</h2>
-<p>Every point has its own pole, the direction <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bx%7D%7B%5C%7Cx%5C%7C%7D">. So we can use one random direction <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> as the pole and ask at what latitude another independent random direction <img src="https://latex.codecogs.com/png.latex?%5Ctheta'"> sits. Rotating <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> to <img src="https://latex.codecogs.com/png.latex?e_1">, that latitude is just <img src="https://latex.codecogs.com/png.latex?%5Ctheta'_1">, and slicing the sphere (the slice at latitude <img src="https://latex.codecogs.com/png.latex?t"> is a sphere of radius <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B1-t%5E2%7D">, tilted) gives it density <img src="https://latex.codecogs.com/png.latex?%5Cpropto%20(1-t%5E2)%5E%7B%5Cfrac%7Bn-3%7D%7B2%7D%7D">. With <img src="https://latex.codecogs.com/png.latex?t%20=%20%5Ccos%5Cvarphi">, the angle between the two directions has density</p>
+<p>Every point has its own pole, the direction <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bx%7D%7B%5C%7Cx%5C%7C%7D">. So we can use one random direction <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> as the pole and ask what latitude another independent random direction <img src="https://latex.codecogs.com/png.latex?%5Ctheta'"> has. Rotating <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> to <img src="https://latex.codecogs.com/png.latex?e_1">, that latitude is just <img src="https://latex.codecogs.com/png.latex?%5Ctheta'_1">, and slicing the sphere (the slice at latitude <img src="https://latex.codecogs.com/png.latex?t"> is a sphere of radius <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B1-t%5E2%7D">, tilted) gives it density <img src="https://latex.codecogs.com/png.latex?%5Cpropto%20(1-t%5E2)%5E%7B%5Cfrac%7Bn-3%7D%7B2%7D%7D">. With <img src="https://latex.codecogs.com/png.latex?t%20=%20%5Ccos%5Cvarphi">, the angle between the two directions has density</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Ap_n(%5Cvarphi)%20%5Cpropto%20%5Csin%5E%7Bn-2%7D%5Cvarphi,%20%5Cqquad%20%5Cvarphi%5Cin%5B0,%5Cpi%5D.%0A"></p>
 <p>For <img src="https://latex.codecogs.com/png.latex?n=3"> this is <img src="https://latex.codecogs.com/png.latex?%5Csin%5Cvarphi">, fairly spread out. For large <img src="https://latex.codecogs.com/png.latex?n"> it becomes a peak at <img src="https://latex.codecogs.com/png.latex?90%C2%B0"> of width <img src="https://latex.codecogs.com/png.latex?%5Csim%201/%5Csqrt%20n"> radians: two random directions in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5E%7B1000%7D"> are within <img src="https://latex.codecogs.com/png.latex?90%C2%B0%20%5Cpm%205.4%C2%B0"> (“basically” orthogonal) of each other with probability about <img src="https://latex.codecogs.com/png.latex?99.7%5C%25">.</p>
-<div id="38a61e60" class="cell" data-execution_count="6">
+<div id="5767997d" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/volumensphere10_files/figure-html/cell-7-output-1.png" width="600" height="342" class="figure-img"></p>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador_files/figure-html/cell-7-output-1.png" width="600" height="342" class="figure-img"></p>
 <figcaption>Angle between two random directions. Black curves are the exact density, proportional to sin^(n-2). Log vertical axis.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The same happens for many directions at once. Below we take <img src="https://latex.codecogs.com/png.latex?40"> random directions and color the cosine of the angle between every pair. The diagonal is each direction with itself, so it is always <img src="https://latex.codecogs.com/png.latex?1">. For <img src="https://latex.codecogs.com/png.latex?n=3"> the rest is a mess of positive and negative values, since 40 directions in 3D cannot all be perpendicular. For <img src="https://latex.codecogs.com/png.latex?n=1000"> everything outside the diagonal is close to <img src="https://latex.codecogs.com/png.latex?0">: all 40 directions are nearly perpendicular to each other at the same time.</p>
-<div id="09fe0788" class="cell" data-execution_count="7">
+<div id="e1260683" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://juantorofabra.com/posts/nsphere/volumensphere10_files/figure-html/cell-8-output-1.png" width="723" height="245" class="figure-img"></p>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador_files/figure-html/cell-8-output-1.png" width="723" height="245" class="figure-img"></p>
 <figcaption>Cosine of the angle between every pair of 40 random directions. White means perpendicular.</figcaption>
 </figure>
 </div>
@@ -174,8 +174,9 @@
 </section>
 <section id="not-that-crazy" class="level2">
 <h2 class="anchored" data-anchor-id="not-that-crazy">Not that crazy</h2>
-<p>In reality this is all not that counterintuitive. The radius constraint <img src="https://latex.codecogs.com/png.latex?x_1%5E2+%5Cdots+x_n%5E2%20%5Cle%201"> is a “budget” shared by <img src="https://latex.codecogs.com/png.latex?n"> coordinates. As we saw in the warm-up, almost all of the volume sits near the surface, so the budget is almost fully spent. A point could spend it all on one coordinate, but almost all of the volume comes from points that spread it evenly, giving each coordinate about <img src="https://latex.codecogs.com/png.latex?1/n">. So every coordinate is of order <img src="https://latex.codecogs.com/png.latex?1/%5Csqrt%20n">: the point is near every equator, while the total still adds up to a radius close to 1. Even a point that spends it all on one coordinate is only special in our choice of axes: after a rotation, <img src="https://latex.codecogs.com/png.latex?(1,0,%5Cdots,0)"> becomes a point whose budget is spread evenly like any other.</p>
-<p><img src="https://juantorofabra.com/posts/nsphere/itsall_ecuador.jpg" class="img-fluid" style="width:100.0%"></p>
+<p>In reality this is all not that counterintuitive. The constraint <img src="https://latex.codecogs.com/png.latex?x_1%5E2+%5Cdots+x_n%5E2%20%5Cle%201"> is shared by <img src="https://latex.codecogs.com/png.latex?n"> coordinates, and we saw in the warm-up that for most points it adds up to almost exactly one. One coordinate could take all of it, like <img src="https://latex.codecogs.com/png.latex?(1,0,%5Cdots,0)">, but almost all of the volume comes from points that spread it evenly <img src="https://latex.codecogs.com/png.latex?%5Csim%20%5Cfrac%7B1%7D%7Bn%7D">. So every coordinate is of order <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Csqrt%7Bn%7D%7D">, the point is near every equator while the total still adds up to a radius close to 1.</p>
+<p>Even a point like <img src="https://latex.codecogs.com/png.latex?(1,0,%5Cdots,0)"> is only special in our choice of axes, we could rotate it and it would become a point like the rest with its coordinates spread out.</p>
+<p><img src="https://juantorofabra.com/posts/everybody_lives_in_ecuador/itsall_ecuador.jpg" class="img-fluid" style="width:100.0%"></p>
 
 
 </section>
@@ -184,9 +185,9 @@
   <category>math</category>
   <category>probability</category>
   <category>monte carlo</category>
-  <guid>https://juantorofabra.com/posts/nsphere/volumensphere10.html</guid>
+  <guid>https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador.html</guid>
   <pubDate>Sat, 10 Oct 2026 22:00:00 GMT</pubDate>
-  <media:content url="https://juantorofabra.com/posts/nsphere/sandiadimensional2.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://juantorofabra.com/posts/everybody_lives_in_ecuador/sandiadimensional2.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>First post</title>
