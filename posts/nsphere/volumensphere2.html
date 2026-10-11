@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-10">
+
+<title>Todo está en el ecuador – Juan’s blog</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-529c26969d27a2a2473a4b9f3bafd9fb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-df07115ad9f15e2ef3479c789e6873c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-529c26969d27a2a2473a4b9f3bafd9fb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Juan’s blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jtorofabra"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Todo está en el ecuador</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">matemáticas</div>
+                <div class="quarto-category">probabilidad</div>
+                <div class="quarto-category">monte carlo</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 10, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p>Coge un punto al azar, uniforme, dentro de la bola unidad de <span class="math inline">\(\mathbb R^n\)</span>. En dimensión alta pasan dos cosas raras: el punto está casi seguro pegado a la superficie, y está casi seguro pegado al ecuador. Y no a un ecuador cualquiera, sino a <em>cualquiera que elijas</em>, incluso a cientos de ellos a la vez.</p>
+<p>Aquí saco la distribución de la “latitud” de dos maneras. La primera es cortando la bola en rebanadas. La segunda parte de una pregunta que no parece tener nada que ver: ¿cuál es la probabilidad de que <span class="math inline">\(n\)</span> números uniformes no pasen ninguno de <span class="math inline">\(1-\varepsilon\)</span>? Al final lo compruebo con Monte Carlo.</p>
+<section id="qué-es-el-ecuador" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-el-ecuador">¿Qué es el ecuador?</h2>
+<p>Fijamos un polo norte, que es un vector unitario <span class="math inline">\(e\)</span>. Por simetría da igual cuál, así que tomamos <span class="math inline">\(e = e_1\)</span>. El ecuador es el hiperplano <span class="math inline">\(\{x_1 = 0\}\)</span>, y la latitud de un punto es su coordenada <span class="math inline">\(x_1\)</span>. “Estar cerca del ecuador” significa estar en la franja <span class="math inline">\(|x_1| &lt; \delta\)</span>.</p>
+<p>En <span class="math inline">\(\mathbb R^3\)</span> el ecuador de la esfera <span class="math inline">\(S^2\)</span> es una circunferencia <span class="math inline">\(S^1\)</span>, y parece poca cosa. Pero en <span class="math inline">\(\mathbb R^n\)</span> el ecuador de <span class="math inline">\(S^{n-1}\)</span> es una <span class="math inline">\(S^{n-2}\)</span>. Solo pierde <strong>una</strong> dimensión de <span class="math inline">\(n\)</span>. En <span class="math inline">\(\mathbb R^{1000}\)</span>, quitar una dirección de mil es no quitar casi nada.</p>
+</section>
+<section id="ruta-1-cortar-en-rebanadas" class="level2">
+<h2 class="anchored" data-anchor-id="ruta-1-cortar-en-rebanadas">Ruta 1: cortar en rebanadas</h2>
+<p>Cortamos la bola por <span class="math inline">\(x_1 = x\)</span>. La rebanada es una <span class="math inline">\((n-1)\)</span>-bola de radio <span class="math inline">\(\sqrt{1-x^2}\)</span>, cuyo volumen es proporcional a <span class="math inline">\((1-x^2)^{\frac{n-1}{2}}\)</span>. La densidad de la latitud es entonces</p>
+<p><span class="math display">\[
+f_n(x) = c_n\,(1-x^2)^{\frac{n-1}{2}}, \qquad c_n = \frac{\Gamma\!\left(\frac n2+1\right)}{\sqrt\pi\,\Gamma\!\left(\frac{n+1}{2}\right)}, \qquad |x|\le 1.
+\]</span></p>
+<p>Para <span class="math inline">\(n\)</span> grande,</p>
+<p><span class="math display">\[
+(1-x^2)^{\frac{n-1}{2}} = \exp\!\Big(\tfrac{n-1}{2}\ln(1-x^2)\Big) \approx e^{-(n-1)x^2/2},
+\]</span></p>
+<p>así que la latitud es casi una normal:</p>
+<p><span class="math display">\[
+x_1 \approx \mathcal N\!\left(0, \tfrac1n\right).
+\]</span></p>
+<p>La anchura de la franja que contiene casi todo el volumen es del orden de <span class="math inline">\(1/\sqrt n\)</span>. En <span class="math inline">\(n=3\)</span> eso vale <span class="math inline">\(0.58\)</span> y no se concentra nada. En <span class="math inline">\(n=1000\)</span> vale <span class="math inline">\(0.03\)</span>.</p>
+</section>
+<section id="ruta-2-ningún-número-mayor-que-1-varepsilon" class="level2">
+<h2 class="anchored" data-anchor-id="ruta-2-ningún-número-mayor-que-1-varepsilon">Ruta 2: ningún número mayor que <span class="math inline">\(1-\varepsilon\)</span></h2>
+<p>Ahora vamos por otro lado. Tiramos <span class="math inline">\(n\)</span> números <span class="math inline">\(u_i\)</span> uniformes en <span class="math inline">\([-1,1]\)</span>. ¿Cuál es la probabilidad de que <strong>ninguno</strong> pase de <span class="math inline">\(1-\varepsilon\)</span> en valor absoluto? Cada <span class="math inline">\(|u_i|\)</span> es uniforme en <span class="math inline">\([0,1]\)</span> y son independientes, así que</p>
+<p><span class="math display">\[
+\mathbb P\Big(\max_i |u_i| \le 1-\varepsilon\Big) = (1-\varepsilon)^n.
+\]</span></p>
+<p>Comparemos con la bola. La fracción de su volumen a distancia menor que <span class="math inline">\(1-\varepsilon\)</span> del centro es <span class="math inline">\(V_n(1-\varepsilon)/V_n(1) = (1-\varepsilon)^n\)</span>. Sale exactamente la misma expresión. No es casualidad: el cubo es la bola unidad de la norma <span class="math inline">\(\|\cdot\|_\infty\)</span>, y cualquier bola de una norma escala como <span class="math inline">\(t^n\)</span>. Así que el radio <span class="math inline">\(R = |x|\)</span> de un punto uniforme en la bola tiene la misma ley que el máximo de <span class="math inline">\(n\)</span> dados:</p>
+<p><span class="math display">\[
+R \;\overset{d}{=}\; \max_i |u_i|, \qquad \mathbb P(R \le t) = t^n.
+\]</span></p>
+<p>Esto ya nos da la mitad de la historia, porque para <span class="math inline">\(n\)</span> grande <span class="math inline">\(R \approx 1\)</span> y el punto está en la superficie. La otra mitad es la dirección. Escribimos <span class="math inline">\(x = R\,\theta\)</span>, con <span class="math inline">\(\theta\)</span> uniforme en la esfera <span class="math inline">\(S^{n-1}\)</span> e independiente de <span class="math inline">\(R\)</span>. La latitud en la esfera, <span class="math inline">\(\theta_1\)</span>, se calcula como antes: la rebanada <span class="math inline">\(\theta_1 = t\)</span> es una <span class="math inline">\(S^{n-2}\)</span> de radio <span class="math inline">\(\sqrt{1-t^2}\)</span>, y hay que corregir por la inclinación con un factor <span class="math inline">\(1/\sqrt{1-t^2}\)</span>. Queda</p>
+<p><span class="math display">\[
+g_n(t) = a_n\,(1-t^2)^{\frac{n-3}{2}}, \qquad a_n = \frac{\Gamma\!\left(\frac n2\right)}{\sqrt\pi\,\Gamma\!\left(\frac{n-1}{2}\right)}.
+\]</span></p>
+<p>(En <span class="math inline">\(n=3\)</span> sale uniforme. Es el teorema de la sombrerera de Arquímedes: las franjas de igual altura de una esfera tienen la misma área.)</p>
+<p>Ahora juntamos las dos piezas. Como <span class="math inline">\(x_1 = R\,\theta_1\)</span>, con <span class="math inline">\(R\)</span> de densidad <span class="math inline">\(n r^{n-1}\)</span>,</p>
+<p><span class="math display">\[
+f(x) = \int_{|x|}^1 n r^{n-1}\, g_n\!\left(\tfrac{x}{r}\right)\frac{dr}{r}
+= n a_n \int_{|x|}^1 r\,(r^2-x^2)^{\frac{n-3}{2}}\,dr
+= \frac{n a_n}{n-1}\,(1-x^2)^{\frac{n-1}{2}}.
+\]</span></p>
+<p>Se comprueba que <span class="math inline">\(\frac{n a_n}{n-1} = c_n\)</span>, así que es <strong>exactamente</strong> la <span class="math inline">\(f_n\)</span> de la ruta 1. Además la varianza sale gratis: <span class="math inline">\(\mathbb E[x_1^2] = \mathbb E[R^2]\,\mathbb E[\theta_1^2] = \frac{n}{n+2}\cdot\frac1n = \frac{1}{n+2}\)</span>.</p>
+<p>Esta ruta también explica la normal. Una dirección uniforme se construye como <span class="math inline">\(\theta = g/|g|\)</span> con <span class="math inline">\(g\)</span> un vector gaussiano. Por la ley de los grandes números <span class="math inline">\(|g| \approx \sqrt n\)</span>, así que <span class="math inline">\(\theta_1 \approx g_1/\sqrt n \sim \mathcal N(0, 1/n)\)</span>, y <span class="math inline">\(R \approx 1\)</span>.</p>
+</section>
+<section id="cerca-de-todos-los-ecuadores-a-la-vez" class="level2">
+<h2 class="anchored" data-anchor-id="cerca-de-todos-los-ecuadores-a-la-vez">¿Cerca de todos los ecuadores a la vez?</h2>
+<p>Si casi todo está en la franja <span class="math inline">\(|x_1|&lt;\delta\)</span>, ¿cómo puede estar también en la franja <span class="math inline">\(|x_2|&lt;\delta\)</span>? Porque “casi todo” no es “todo”. La intersección de <span class="math inline">\(k\)</span> franjas pierde como mucho la suma de lo que pierde cada una:</p>
+<p><span class="math display">\[
+\mathbb P\Big(\max_{i\le k} |x_i| \ge \delta\Big) \;\le\; k\cdot \mathbb P(|x_1|\ge\delta) \;\lesssim\; 2k\, e^{-n\delta^2/2}.
+\]</span></p>
+<p>Volvemos a la pregunta de antes, pero ahora para el punto de la bola: ¿ninguna coordenada mayor que <span class="math inline">\(\delta\)</span>? Un ejemplo explícito es <span class="math inline">\(x = (1,\dots,1)/\sqrt n\)</span>. Está en la superficie y cada coordenada vale <span class="math inline">\(1/\sqrt n\)</span>, así que con <span class="math inline">\(n = 10^4\)</span> está a <span class="math inline">\(0.01\)</span> de los <span class="math inline">\(n\)</span> ecuadores coordenados a la vez. En <span class="math inline">\(\mathbb R^3\)</span> esto es imposible, porque <span class="math inline">\(x^2+y^2+z^2 = 1\)</span> obliga a que alguna coordenada valga al menos <span class="math inline">\(1/\sqrt 3\)</span>.</p>
+<p>Lo único que no se puede es pedir <em>todas</em> las direcciones. Si <span class="math inline">\(|\langle x, e\rangle| &lt; \delta\)</span> para todo <span class="math inline">\(e\)</span> unitario, entonces <span class="math inline">\(|x| &lt; \delta\)</span>, y esa bola tiene volumen relativo <span class="math inline">\(\delta^n \to 0\)</span>. Cada punto tiene una dirección en la que está en el polo: la suya, <span class="math inline">\(e = x/|x|\)</span>.</p>
+</section>
+<section id="monte-carlo" class="level2">
+<h2 class="anchored" data-anchor-id="monte-carlo">Monte Carlo</h2>
+<div id="e4c57811" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gammaln</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bola_uniforme(n, N):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dirección: gaussiana normalizada; radio: el máximo de n dados</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> rng.standard_normal((N, n))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> g <span class="op">/</span> np.linalg.norm(g, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.<span class="bu">abs</span>(rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, (N, n))).<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R[:, <span class="va">None</span>] <span class="op">*</span> theta</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>El radio sale del cubo.</strong> Tiramos puntos uniformes en el cubo <span class="math inline">\([-1,1]^6\)</span>. Para todos miramos <span class="math inline">\(\max_i|u_i|\)</span>, y para los que caen dentro de la bola (muestreo por rechazo) miramos <span class="math inline">\(|x|\)</span>. Las dos cosas deben seguir <span class="math inline">\(n t^{n-1}\)</span>, aunque el segundo cálculo no sabe nada de máximos.</p>
+<div id="cell-fig-radio" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n, N <span class="op">=</span> <span class="dv">6</span>, <span class="dv">2_000_000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span>(N, n))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>r_cubo <span class="op">=</span> np.<span class="bu">abs</span>(u).<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> np.linalg.norm(u, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>r_bola <span class="op">=</span> r2[r2 <span class="op">&lt;=</span> <span class="dv">1</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.5</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ax.hist(r_cubo, bins<span class="op">=</span><span class="dv">60</span>, density<span class="op">=</span><span class="va">True</span>, histtype<span class="op">=</span><span class="st">"step"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="vs">r"cubo: </span><span class="dv">$\m</span><span class="vs">ax </span><span class="cf">|</span><span class="vs">u_i</span><span class="cf">|</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ax.hist(r_bola, bins<span class="op">=</span><span class="dv">60</span>, density<span class="op">=</span><span class="va">True</span>, histtype<span class="op">=</span><span class="st">"step"</span>, lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="vs">r"bola: </span><span class="dv">$</span><span class="cf">|</span><span class="vs">x</span><span class="cf">|</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax.plot(t, n <span class="op">*</span> t<span class="op">**</span>(n <span class="op">-</span> <span class="dv">1</span>), <span class="st">"k--"</span>, label<span class="op">=</span><span class="vs">r"</span><span class="dv">$</span><span class="vs">n</span><span class="ch">\,</span><span class="vs">t</span><span class="dv">^</span><span class="vs">{n-1}</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"t"</span>)<span class="op">;</span> ax.set_title(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-radio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-radio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="volumensphere2_files/figure-html/fig-radio-output-1.png" width="483" height="339" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-radio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: El máximo de los dados en el cubo y el radio en la bola siguen la misma ley.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La probabilidad de que ningún dado pase de <span class="math inline">\(1-\varepsilon\)</span>, con <span class="math inline">\(\varepsilon = 0.01\)</span>:</p>
+<div id="f21b7e8c" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eps, N <span class="op">=</span> <span class="fl">0.01</span>, <span class="dv">20_000</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'n'</span><span class="sc">:&gt;5}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Monte Carlo'</span><span class="sc">:&gt;12}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'(1-eps)^n'</span><span class="sc">:&gt;10}</span><span class="ss">"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">300</span>]:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span>(N, n))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    p_mc <span class="op">=</span> np.mean(np.<span class="bu">abs</span>(u).<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&lt;=</span> <span class="dv">1</span> <span class="op">-</span> eps)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;5}</span><span class="ss"> </span><span class="sc">{</span>p_mc<span class="sc">:&gt;12.4f}</span><span class="ss"> </span><span class="sc">{</span>(<span class="dv">1</span> <span class="op">-</span> eps)<span class="op">**</span>n<span class="sc">:&gt;10.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    n  Monte Carlo  (1-eps)^n
+   10       0.9048     0.9044
+   50       0.6025     0.6050
+  100       0.3613     0.3660
+  300       0.0471     0.0490</code></pre>
+</div>
+</div>
+<p><strong>La latitud.</strong> Con el radio del cubo y la dirección gaussiana, el histograma de <span class="math inline">\(x_1\)</span> debe caer encima de <span class="math inline">\(f_n\)</span> y, para <span class="math inline">\(n\)</span> grande, de <span class="math inline">\(\mathcal N(0,1/(n+2))\)</span>.</p>
+<div id="cell-fig-ecuador" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_exacta(x, n):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    log_c <span class="op">=</span> gammaln(n <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> np.log(np.pi) <span class="op">-</span> gammaln((n <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(log_c) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x<span class="op">**</span><span class="dv">2</span>) <span class="op">**</span> ((n <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">400</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, n <span class="kw">in</span> <span class="bu">zip</span>(axes, [<span class="dv">3</span>, <span class="dv">20</span>, <span class="dv">200</span>]):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> bola_uniforme(n, <span class="dv">40_000</span>)[:, <span class="dv">0</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (n <span class="op">+</span> <span class="dv">2</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ax.hist(x1, bins<span class="op">=</span><span class="dv">80</span>, <span class="bu">range</span><span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, label<span class="op">=</span><span class="st">"Monte Carlo"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(x, f_exacta(x, n), <span class="st">"k"</span>, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"$f_n$"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(x, norm.pdf(x, scale<span class="op">=</span>np.sqrt(s2)), <span class="st">"r--"</span>, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="vs">r"</span><span class="dv">$\m</span><span class="vs">athcal{N}</span><span class="kw">(</span><span class="vs">0, 1/</span><span class="kw">(</span><span class="vs">n</span><span class="op">+</span><span class="vs">2</span><span class="kw">))</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"n = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(frameon<span class="op">=</span><span class="va">False</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ecuador" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecuador-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="volumensphere2_files/figure-html/fig-ecuador-output-1.png" width="952" height="278" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecuador-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribución de la latitud de un punto uniforme en la bola.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Todos los ecuadores a la vez.</strong> En <span class="math inline">\(n = 1000\)</span> miramos la mayor de las <span class="math inline">\(n\)</span> latitudes, <span class="math inline">\(\max_i |x_i|\)</span>. Si las coordenadas fueran normales independientes de varianza <span class="math inline">\(1/n\)</span>, tendríamos <span class="math inline">\(\mathbb P(\max_i|x_i| \le \delta) \approx \big(2\Phi(\delta\sqrt n)-1\big)^n\)</span>.</p>
+<div id="cell-fig-todos" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n, N <span class="op">=</span> <span class="dv">1000</span>, <span class="dv">5_000</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.<span class="bu">abs</span>(bola_uniforme(n, N)).<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.linspace(<span class="fl">0.05</span>, <span class="fl">0.25</span>, <span class="dv">300</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.5</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.plot(np.sort(m), np.arange(<span class="dv">1</span>, N <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> N, lw<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"Monte Carlo"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.plot(d, (<span class="dv">2</span> <span class="op">*</span> norm.cdf(d <span class="op">*</span> np.sqrt(n)) <span class="op">-</span> <span class="dv">1</span>) <span class="op">**</span> n, <span class="st">"k--"</span>, label<span class="op">=</span><span class="st">"normales independientes"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"</span><span class="dv">$\d</span><span class="vs">elta</span><span class="dv">$</span><span class="vs">"</span>)<span class="op">;</span> ax.set_ylabel(<span class="vs">r"</span><span class="dv">$</span><span class="vs">P</span><span class="kw">(</span><span class="dv">\m</span><span class="vs">ax_i </span><span class="cf">|</span><span class="vs">x_i</span><span class="cf">|</span><span class="vs"> </span><span class="er">\</span><span class="vs">leq </span><span class="dv">\d</span><span class="vs">elta</span><span class="kw">)</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"fracción de puntos a menos de 0.15 de los 1000 ecuadores: </span><span class="sc">{</span>np<span class="sc">.</span>mean(m <span class="op">&lt;</span> <span class="fl">0.15</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-todos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-todos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="volumensphere2_files/figure-html/fig-todos-output-1.png" width="522" height="319" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-todos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Distancia al ecuador más lejano entre los 1000 coordenados, en n = 1000.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>fracción de puntos a menos de 0.15 de los 1000 ecuadores: 0.999</code></pre>
+</div>
+</div>
+<p>Prácticamente todos los puntos están a menos de <span class="math inline">\(0.15\)</span> de los mil ecuadores coordenados a la vez, y a la vez a distancia <span class="math inline">\(\approx 1\)</span> del centro. En dimensión alta la esfera es casi toda ecuador, y lo es respecto a cualquier polo que elijas.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/juantorofabra\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
