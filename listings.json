@@ -2,8 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador.html",
       "/posts/is_go_ferromagnetic/is_go_ferromagnetic.html",
+      "/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador.html",
       "/posts/welcome/index.html"
     ]
   }
