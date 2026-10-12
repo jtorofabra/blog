@@ -23,7 +23,7 @@
 
 <section id="what-is-go" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-go">What is Go</h2>
-<p>Lately I’ve been playing some <em>Go</em> with my friend Juan. Go is a Chinese board game where you basically have to place stones on a grid to capture territory. A group of stones is captured when it loses all its <em>liberties</em> (the empty points adjacent to it) i.e.&nbsp;when it is completely surrounded by enemy stones. As the nerds we are, we quickly noticed some similarities between the game of Go and the Ising model for ferromagnetism.</p>
+<p>Lately I’ve been playing some <em>Go</em> with my friend Juan (<em>not</em> myself). Go is a Chinese board game where you basically have to place stones on a grid to capture territory. A group of stones is captured when it loses all its <em>liberties</em> (the empty points adjacent to it) i.e.&nbsp;when it is completely surrounded by enemy stones. As the nerds we are, we quickly noticed some similarities between the game of Go and the Ising model for ferromagnetism.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://juantorofabra.com/posts/is_go_ferromagnetic/figures/playinggo2.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
@@ -33,7 +33,7 @@
 <section id="what-is-the-ising-model" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-the-ising-model">What is the Ising model</h2>
 <p>The Ising model is a model for ferromagnetism developed in the 1920s. Essentially, it treats a material as a grid of tiny magnets (spins) that can point either up or down. The probability of finding the material in a given configuration (some combination of up and down spins) depends on its energy, which depends on two things (more in Annex A): 1. the external magnetic field, which pushes every spin in its direction, and 2. the interaction between neighbouring spins. When neighbours prefer to point the same way, the spins can align on their own, even without an external field, and the material is ferromagnetic.</p>
-<p>The similarities lie in the fact that <em>liberties</em> in Go are like the external field in the Ising model (your orthogonal neighbours affect whether you stay alive or not), territory can be white/black like spins are up/down, and that you end up with blocks of territory (lonely pieces die).</p>
+<p>The similarities lie in the fact that <em>liberties</em> in Go are like spin coupling in the Ising model (your orthogonal neighbours affect whether you stay alive or not), territory can be white/black like spins are up/down, and that you end up with blocks of territory (lonely pieces die).</p>
 <p>Also, I’m sadly (and obviously) not the first person to ever make this connection (see Stern et al., 2004, or Alvarado et al., 2017).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -45,7 +45,7 @@
 <section id="the-model" class="level2">
 <h2 class="anchored" data-anchor-id="the-model">The model</h2>
 <p>I now set out to describe predicting the outcome of Go games with this model, and hopefully try to see if it makes sense to define some notion of ferromagnetism for the game.</p>
-<p>Grosso modo this is the solution we will use: start from a given position, and treat the existing stones as an external magnetic field. Then, with that external field, sample the probability distribution of an Ising model and take the prediction of the final outcome as the expected spins.</p>
+<p>Grosso modo this is the solution we will use: start from a given position, and treat the existing stones as an external magnetic field. Then, with that external field, compute the probability distribution of an Ising model and take the prediction of the final outcome as the expected spins.</p>
 <p><img src="https://juantorofabra.com/posts/is_go_ferromagnetic/figures/pipeline.png" class="img-fluid"></p>
 <p>Essentially what we want is to find the parameters that assign low energies to the real final territory given some position and high energies to the rest.</p>
 <p>This model has three main things to be learned: how the color of a stone affects the external magnetic field around it (<img src="https://latex.codecogs.com/png.latex?w">), how the position in the board affects the external magnetic field (<img src="https://latex.codecogs.com/png.latex?b">), and finally the coupling between neighbours (<img src="https://latex.codecogs.com/png.latex?J">). How many parameters? <img src="https://latex.codecogs.com/png.latex?w"> is a 5x5 kernel, <img src="https://latex.codecogs.com/png.latex?b"> is a 9x9 map (the entire board), and <img src="https://latex.codecogs.com/png.latex?J"> is a 3x3 kernel. However from symmetry we can reduce this to 6 parameters for <img src="https://latex.codecogs.com/png.latex?w">, 15 parameters for <img src="https://latex.codecogs.com/png.latex?b">, and 2 for <img src="https://latex.codecogs.com/png.latex?J">. Total 23. The next step is to find a dataset to train these parameters, and based on the shape of <img src="https://latex.codecogs.com/png.latex?J"> we will be able to see if Go can be described through ferromagnetic coupling.</p>
@@ -58,12 +58,12 @@
 </figure>
 </div>
 <p>This doesn’t seem too bad, but let’s take a look at the parameters. The first thing is that the baseline with no spin coupling already does fairly well, so it’s not immediately clear whether or not coupling is really needed.</p>
-<p>From the coupling parameters we also see that only orthogonal neighbours couple, which makes sense given the rules of the game (although more than I expected).</p>
+<p>From the coupling parameters we also see that only orthogonal neighbours couple, which makes sense given the rules of the game.</p>
 <p>In numbers, both models get about 80 % of the points right, so the coupling doesn’t help to guess each point. Where it does help is with the whole board at once: the log-loss of the real final territory is cut in half, because the model knows that territory comes in blocks.</p>
 <p>And <img src="https://latex.codecogs.com/png.latex?J%20=%200.77"> is a strong coupling, the textbook 2D Ising model (infinite board, no external field) orders into a magnet above <img src="https://latex.codecogs.com/png.latex?J%20%5Capprox%200.44">. Our board is small and the stones act as a field so this is only a rough reference, but it is something.</p>
 <p><img src="https://juantorofabra.com/posts/is_go_ferromagnetic/figures/parameters.png" class="img-fluid"></p>
 <p>The coupling also changes how the stones create a field. Without coupling the kernel <img src="https://latex.codecogs.com/png.latex?w"> is a broad blob with large weights even far from the center. Every square is guessed on its own, so a stone has to spread its colour over its whole area of influence by itself. With coupling the kernel is very local and even has a negative weight on its four orthogonal neighbours.</p>
-<p>The bias <img src="https://latex.codecogs.com/png.latex?b"> is and small noisy but we can recognise some areas and positions that vaguely make sense knowing the game. Again a big change between coupling and non-coupling cases.</p>
+<p>The bias <img src="https://latex.codecogs.com/png.latex?b"> is small and noisy but we can recognise some areas and positions that vaguely make sense knowing the game. Again a big change between coupling and non-coupling cases.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://juantorofabra.com/posts/is_go_ferromagnetic/figures/bias.png" class="img-fluid figure-img"></p>
