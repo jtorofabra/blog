@@ -385,6 +385,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="what-is-the-ising-model">What is the Ising model</h2>
 <p>The Ising model is a model for ferromagnetism developed in the 1920s. Essentially, it treats a material as a grid of tiny magnets (spins) that can point either up or down. The probability of finding the material in a given configuration (some combination of up and down spins) depends on its energy, which depends on two things (more in <a href="#annex-a">Annex A</a>): 1. the external magnetic field, which pushes every spin in its direction, and 2. the interaction between neighbouring spins. When neighbours prefer to point the same way, the spins can align on their own, even without an external field, and the material is ferromagnetic.</p>
 <p>The similarities lie in the fact that <em>liberties</em> in Go are like the external field in the Ising model (your orthogonal neighbours affect whether you stay alive or not), territory can be white/black like spins are up/down, and that you end up with blocks of territory (lonely pieces die).</p>
+<p>Also, I’m sadly (and obviously) not the first person to ever make this connection (see Stern et al., 2004, or Alvarado et al., 2017).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/ising_model.png" class="img-fluid figure-img"></p>
@@ -394,8 +395,8 @@ window.Quarto = {
 </section>
 <section id="the-model" class="level2">
 <h2 class="anchored" data-anchor-id="the-model">The model</h2>
-<p>I now set out to try to describe predicting the outcome of Go games with this model, and hopefully try to see if it makes sense to define some notion of ferromagnetism for the game.</p>
-<p>Grosso modo this is the solution I came up with: start from a given position, and treat the existing stones as an external magnetic field. Then, with that external field, sample the probability distribution of an Ising model and take the prediction of the final outcome as the expected spins.</p>
+<p>I now set out to describe predicting the outcome of Go games with this model, and hopefully try to see if it makes sense to define some notion of ferromagnetism for the game.</p>
+<p>Grosso modo this is the solution we will use: start from a given position, and treat the existing stones as an external magnetic field. Then, with that external field, sample the probability distribution of an Ising model and take the prediction of the final outcome as the expected spins.</p>
 <p><img src="figures/pipeline.png" class="img-fluid"></p>
 <p>Essentially what we want is to find the parameters that assign low energies to the real final territory given some position and high energies to the rest.</p>
 <p>This model has three main things to be learned: how the color of a stone affects the external magnetic field around it (<span class="math inline">\(w\)</span>), how the position in the board affects the external magnetic field (<span class="math inline">\(b\)</span>), and finally the coupling between neighbours (<span class="math inline">\(J\)</span>). How many parameters? <span class="math inline">\(w\)</span> is a 5x5 kernel, <span class="math inline">\(b\)</span> is a 9x9 map (the entire board), and <span class="math inline">\(J\)</span> is a 3x3 kernel. However from symmetry we can reduce this to 6 parameters for <span class="math inline">\(w\)</span>, 15 parameters for <span class="math inline">\(b\)</span>, and 2 for <span class="math inline">\(J\)</span>. Total 23. The next step is to find a dataset to train these parameters, and based on the shape of <span class="math inline">\(J\)</span> we will be able to see if Go can be described through ferromagnetic coupling.</p>
