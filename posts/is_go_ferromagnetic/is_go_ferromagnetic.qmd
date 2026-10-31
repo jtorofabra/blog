@@ -103,7 +103,7 @@ There is a clear peak at $T_c \approx 1.5$, and our model ($T = 1$) sits below i
 
 ![](figures/hysteresis.png)
 
-And it has memory. After a push and back to zero field it stays 96 % magnetized, while above $T_c$ ($T = 2.5$) it just follows the field and forgets it. So the coupling the model learned from Go is, on its own, the coupling of a magnet.
+And it has memory. After a push and back to zero field it stays 95 % magnetized, while above $T_c$ ($T = 2.5$) it just follows the field and forgets it. So the coupling the model learned from Go is, on its own, the coupling of a magnet.
 
 Again this is not surprising knowing the coupling kernel from the training, but it still learnt that all on its own from looking at games. It could have also learnt a different coupling or no coupling at all.
 
