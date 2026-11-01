@@ -22,6 +22,7 @@ format:
       light: litera
       dark: darkly
     css: styles.css
+    include-in-header: analytics.html
 
 execute:
   freeze: auto
