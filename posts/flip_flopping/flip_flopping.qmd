@@ -1,5 +1,5 @@
 ---
-title: "Flip Flopping Claude spinner verbs"
+title: "Flip-Flopping Claude spinner verbs"
 date: 2026-10-31
 categories: [data science, ai]
 image: flip_flopping.png
@@ -10,7 +10,13 @@ format:
 ![](flip_flopping.png){fig-align="center" width="50%"}
 
 ## Spinner verbs
-Whenever you ask Claude a question, it will display some kind of weird verb while it thinks about the answer. These are "spinner verbs" and they all share a similar style. Some of the more well known ones are "Discombobulating", "Crystallizing", or "Moonwalking". Even though they all vaguely follow the same style, they can have very different meanings so it's not exactly obvious what makes a spinner verb "spinny". In this post we will explore a method for proposing new verbs using word embeddings and some basic data science.
+Whenever you ask Claude a question, a little spinner appears while it thinks and next to it some word like "Discombobulating", "Crystallizing", or "Moonwalking". These are "spinner verbs", in total there are 187 different ones. Basically their role is to have something entertaining while you wait instead of it just saying "Loading..."
+
+Some other examples are Simmering, Flummoxing, Watchamacalliting, Dilly-dallying, Bebopping, Meandering, Spelunking, Orbiting, Transmuting, Quantumizing etc etc.
+
+The thing is that they all share a similar style even though they can be about very different things.  "Simmering" and "Quantumizing" have nothing in common in meaning but they feel right. "Loading" or "Running" would feel wrong even though they describe what Claude is actually doing. 
+
+In this post we will explore a method for proposing new verbs like these using word embeddings and some basic data science.
 
 ![](screenshot.png){fig-align="center" width="70%"}
 
@@ -18,9 +24,11 @@ Whenever you ask Claude a question, it will display some kind of weird verb whil
 If we want to analyze these verbs we need a way to represent them mathematically. For this we use word embeddings.
 A word embedding represents a word as a list of numbers, which we can interpret as vectors. A neural network reads enormous amounts of text and assigns those coordinates so that words used in similar ways land near each other. For example, it notices that "dog", "puppy" and "cat" appear in similar sentences and puts them close together, while "dog" and "volcano" end up far apart. Distance works now as a measure of similarity (see Annex A), and once words are points in space we can work with their meaning using simple geometry and linear algebra. For example we can find neighbours, group into themes with clusters of points, or find regions where certain words live.
 
-Here we use all-mpnet-base-v2, an open sentence embedding model that turns each word into a 768-dimension vector that we normalize to length one (see Annex A). 
+Here we use all-mpnet-base-v2, an open sentence embedding model that turns each word into a 768-dimension vector that we normalize to length one (see Annex A).
 
-<!-- CLAUDE EDIT -->
+Also, here we are working with 768-dimensional geometry, so some of our intuition about distances doesn't necessarily translate (see post [Everybody lives in Ecuador](../everybody_lives_in_ecuador/everybody_lives_in_ecuador.qmd) for a discussion of this). For some things it's the same, but for example the angle between two random vectors is usually almost $90°$, so if two vectors have an angle of $60°$ between them it means that they are actually much more similar than we would think, living in a 3D world. 
+
+
 ![Real embeddings of everyday words, squashed to 2-D. (a) Related words land close together. (b) Directions also mean something: the step from an adult animal to its baby points the same way for every animal, so puppy − dog + cat lands on kitten.](images/fig_toy_embedding.png){#fig-toy width=100%}
 
 
@@ -139,7 +147,7 @@ Here are some examples.
 
 : Some examples of themes and their proposed additions. {#tbl-themes}
 
-<!-- CLAUDE EDIT -->
+
 ![The themes from the table above: their official verbs (blue) and the proposals listed in the table (orange). Positions are only indicative.](images/fig_map.png){#fig-map width=95%}
 
 
