@@ -273,7 +273,7 @@ $$
 In words, it must be as close to the centre as all but the 5% least central official verbs of that theme. The cap 0.72 (the median closeness of all official verbs to their own centre) stops a tiny theme of near-synonyms from rejecting good fits just because the others are much closer. The candidate must also be in the model's top 15% best scoring verbs.
 
 
-**The catch-all theme.** For example the theme containing (Accomplishing, Doing, but also Cascading, Enchanting, Razzle-dazzling) collects the official verbs that fit no sharper theme. So its centre is almost the average of *all* candidates <!-- CLAUDE EDIT -->(closeness 0.93 to that average, against 0.63 for the most specific theme), and it is the closest theme for 31% of all candidates. For this theme, "close to the centre" just means "a generic verb", which is why its proposals (Genuflecting, Exhilarating, Dovetailing) are weak. This shows that the method is not perfect.
+**The catch-all theme.** For example the theme containing (Accomplishing, Doing, but also Cascading, Enchanting, Razzle-dazzling) collects the official verbs that fit no sharper theme. So its centre is almost the average of *all* candidates (closeness 0.93 to that average, against 0.63 for the most specific theme), and it is the closest theme for 31% of all candidates. For this theme, "close to the centre" just means "a generic verb", which is why its proposals (Genuflecting, Exhilarating, Dovetailing) are weak. This shows that the method is not perfect.
 
 **Maximal Marginal Relevance (MMR).** Among the 80 best-scoring candidates that fit, we pick up to 8 one at a time. Each pick is
 $$
