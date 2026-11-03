@@ -1,7 +1,7 @@
 ---
 title: "On the ferromagnetic properties of the game of Go"
 date: 2026-10-12
-categories: [statistical physics, games, machine learning]
+categories: [physics, games, machine learning]
 image: figures/pipeline.png
 format:
   html:

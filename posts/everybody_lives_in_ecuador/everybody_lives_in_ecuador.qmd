@@ -1,7 +1,7 @@
 ---
 title: "Everybody lives in Ecuador"
 date: 2026-10-11
-categories: [math, probability, monte carlo]
+categories: [math, probability, geometry]
 image: sandiadimensional2.jpg
 aliases:
   - ../nsphere/volumensphere.html
