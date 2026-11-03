@@ -45,6 +45,7 @@
 </section>
 <section id="analytical-mechanics-and-jacobis-principle" class="level2">
 <h2 class="anchored" data-anchor-id="analytical-mechanics-and-jacobis-principle">Analytical mechanics and Jacobi’s principle</h2>
+<p>For this part some basic knowledge of analytical mechanics will be needed.</p>
 <p>We know from analytical mechanics that physical trajectories make stationary a scalar quantity known as the action. In its standard form (Hamilton’s principle) it is written as an integral over time, with <img src="https://latex.codecogs.com/png.latex?T"> the kinetic energy and <img src="https://latex.codecogs.com/png.latex?V"> the potential energy:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0AS%20=%20%5Cint_%7Bt_1%7D%5E%7Bt_2%7D%20(T%20-%20V)%5C,%20dt%20,%0A"></p>
 <p>where we compare all paths that go between two configurations in the same time <img src="https://latex.codecogs.com/png.latex?t_2%20-%20t_1">. There is an alternative formulation (Maupertuis’ principle) that compares paths with equal energy <img src="https://latex.codecogs.com/png.latex?E"> instead of equal time.The stationary quantiy is now the abbreviated action:</p>
