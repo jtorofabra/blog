@@ -1,9 +1,12 @@
 # mi Blog personal
 
-Este es el repositorio de git de mi blog. Lo tengo como repositorio público porque es necesario para poder hostearlo en GitHub Pages.
+This is the git repo for my blog. I have it as a public repository to be able to host in on GitHub pages.
 
-Los artículos del blog son sobre física/matemáticas pero espero diversificar hacia divertimentos varios.
+The blog posts are about math/physics but I hope to ramify onto some other things as well.
 
-El blog está hecho con [Quarto](https://quarto.org/).
 
-Si quieres leerlo se ve mucho mejor en **[juantorofabra.com](https://juantorofabra.com)**.
+I use Quarto [Quarto](https://quarto.org/).
+
+If you want to read it it's much prettier here  **[juantorofabra.com](https://juantorofabra.com)**.
+
+AI: i use Claude to help with the coding involved in several posts, which is why Claude is coauthored on some commits. Everything else is human.
