@@ -79,6 +79,12 @@
 <p>With this label the momentum becomes <img src="https://latex.codecogs.com/png.latex?p_i%20=%20m_i%5C,%20dx_i/dt">, and the equations of motion become</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Am_i%20%5Cfrac%7Bd%5E2%20x_i%7D%7Bdt%5E2%7D%20=%20-%5Cfrac%7B%5Cpartial%20V%7D%7B%5Cpartial%20x_i%7D%20,%0A"></p>
 <p>which is Newton’s second law. Any other label would leave extra terms in the equations, so <img src="https://latex.codecogs.com/png.latex?t"> is the unique label (up to choosing units and a starting point) in which the law takes its simplest form. We call it time.</p>
+</section>
+<section id="not-so-surprinsing" class="level3">
+<h3 class="anchored" data-anchor-id="not-so-surprinsing">Not so surprinsing</h3>
+<p>It is not surprising that we arrive at newton’s laws, since the analytical mechanics concepts we borrowed were built explicitely to produce them. The point is that instead of taking time as fundamental we can take the Jacobi action as fundamental and derive time from it.</p>
+<p>In my daily life I will likely still use Newton’s laws, but it’s a nice example of math alone can’t tell us how the universe really is. These two formalisms produce equivalent predictions but have very different philosophical implications.</p>
+<p>This will change a bit when we talk about absolute space, but I will leave that for another post.</p>
 
 
 </section>
