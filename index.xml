@@ -10,7 +10,87 @@
 <atom:link href="https://juantorofabra.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>---</description>
 <generator>quarto-1.10.19</generator>
-<lastBuildDate>Fri, 30 Oct 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Timeless Mechanics</title>
+  <link>https://juantorofabra.com/posts/timeless_mechanics/timeless_mechanics.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://juantorofabra.com/posts/timeless_mechanics/newton_vs_leibniz.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<section id="hello-newton" class="level3">
+<h3 class="anchored" data-anchor-id="hello-newton">Hello Newton</h3>
+<p>This semester I’m taking Michael Esfeld’s course on the philosophy of physics at EPFL, and I wanted to talk about one idea I found interesting.</p>
+<p>I will try to keep the philosophy to a minimum since it’s not the main point I want to discuss.</p>
+<p>Essentially when Newton established his laws of motion, he needed an absolute space and time to exist by themselves independently of the objects in the universe.</p>
+<p>As a physical theory it works great, but some people (namely, Leibniz) had issues with the ontology it proposes. The ontology of a theory is basically all the things that exist independetly of everything else. A good ontology should not have more things than what is absolutelly neccesary to explain the phenomena we observe (this is called parsimony).</p>
+</section>
+<section id="hello-leibniz" class="level3">
+<h3 class="anchored" data-anchor-id="hello-leibniz">Hello Leibniz</h3>
+<p>Leibniz argued that in Newton’s view (substantivalism), configurations that were rotated or translated with respect to this absolute space could not be distinguished and behave just the same, even if they are two different configurations of the universe. The same goes for time and velocity, if every event in the universe happened 5 seconds later or with a constant velocity, we still have no way of telling the difference.</p>
+<p>In Leibniz’s view (relationalism), you only really need the distances between objects and the order of configurations. The thing is that nowhere in this ontology it says how long things take, only in what order they happen. This seems strange at first since it doesn’t fit with our experience of the world and it doesn’t even let us use the concept of velocities.</p>
+<p>I don’t want to get into the arguments for or against this, but from a physics standpoint it actually is possible to write Newtonian mechanics in a way that only uses these two things, and time and velocity come out of it as derived concepts. Let’s get into it.</p>
+</section>
+<section id="paths-in-configuration-space" class="level3">
+<h3 class="anchored" data-anchor-id="paths-in-configuration-space">Paths in configuration space</h3>
+<p>Take the universe as <img src="https://latex.codecogs.com/png.latex?N"> particles with masses <img src="https://latex.codecogs.com/png.latex?m_i"> at positions <img src="https://latex.codecogs.com/png.latex?x_i">. A configuration of the whole universe is a single point in a <img src="https://latex.codecogs.com/png.latex?3N">-dimensional space, which we call configuration space. A history of the universe is then a path through this space. We have a sequence of configurations and an order, nothing more.</p>
+</section>
+<section id="analytical-mechanics-and-jacobis-principle" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-mechanics-and-jacobis-principle">Analytical mechanics and Jacobi’s principle</h2>
+<p>We know from analytical mechanics that physical trajectories make stationary a scalar quantity known as the action. In its standard form (Hamilton’s principle) it is written as an integral over time, with <img src="https://latex.codecogs.com/png.latex?T"> the kinetic energy and <img src="https://latex.codecogs.com/png.latex?V"> the potential energy:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AS%20=%20%5Cint_%7Bt_1%7D%5E%7Bt_2%7D%20(T%20-%20V)%5C,%20dt%20,%0A"></p>
+<p>where we compare all paths that go between two configurations in the same time <img src="https://latex.codecogs.com/png.latex?t_2%20-%20t_1">. There is an alternative formulation (Maupertuis’ principle) that compares paths with equal energy <img src="https://latex.codecogs.com/png.latex?E"> instead of equal time.The stationary quantiy is now the abbreviated action:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AW%20=%20%5Cint%20%5Csum_i%20p_i%20%5Ccdot%20dx_i%20,%0A"></p>
+<p>But we still haven’t got rid of time, since <img src="https://latex.codecogs.com/png.latex?p_i%20=%20m_i%20v_i%20=%20m_i%20%5Cfrac%7Bdx_i%7D%7Bdt%7D">. But now look at the term in the integrand, we can substitute and get the kinetic energy T:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_i%20p_i%20%5Ccdot%20dx_i%20=%20%5Csum_i%20m_i%5C,%20v_i%20%5Ccdot%20(v_i%5C,%20dt)%20=%202T%5C,%20dt%20,%0A"></p>
+<p>Multiplying again by <img src="https://latex.codecogs.com/png.latex?dt"> and noticing that <img src="https://latex.codecogs.com/png.latex?v_i%5C,%20dt%20=%20dx_i"> we get:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A2T%5C,%20dt%5E2%20=%20%5Csum_i%20m_i%5C,%20(v_i%5C,%20dt)%5Ccdot(v_i%5C,%20dt)%20=%20%5Csum_%7Bi=1%7D%5EN%20m_i%20%5C,%20dx_i%20%5Ccdot%20dx_i%20.%0A"></p>
+<p>The right hand side now doesn’t depend on time at all, and with it we can define the length of an infinitesimal step along our path in configuration space:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ads%5E2%20=%202T%20dt%5E2%20=%20%5Csum_%7Bi=1%7D%5EN%20m_i%20%5C,%20dx_i%20%5Ccdot%20dx_i%20.%0A"> Intuitively we can think of <img src="https://latex.codecogs.com/png.latex?ds"> as a replacement of <img src="https://latex.codecogs.com/png.latex?dt"> that instead of time measures change in configuration space (its just a sum of displacements <img src="https://latex.codecogs.com/png.latex?dx_i">).</p>
+<p>Putting everything together,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csum_i%20p_i%20%5Ccdot%20dx_i%20=%202T%5C,%5Cfrac%7Bds%7D%7B%5Csqrt%7B2T%7D%7D%20=%20%5Csqrt%7B2T%7D%5C;%20ds%20=%20%5Csqrt%7B2(E%20-%20V)%7D%5C;%20ds%20.%0A"></p>
+<p>Everything that depends on time is now gone and we have Jacobi’s principle. Every trajectory in the universe can be calculated using this and the principle of least action, whithout mentioning time.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AS_J%20=%20%5Cint_%5Cgamma%20%5Csqrt%7B2%5C,(E%20-%20V)%7D%5C;%20ds%0A"></p>
+<section id="why-the-label-doesnt-matter" class="level3">
+<h3 class="anchored" data-anchor-id="why-the-label-doesnt-matter">Why the label doesn’t matter</h3>
+<p>To actually calculate anything along a path, we need to label the points with some parameter <img src="https://latex.codecogs.com/png.latex?%5Clambda">. Since we don’t have time, <img src="https://latex.codecogs.com/png.latex?%5Clambda"> can be any increasing function.</p>
+<p>The action of any given path is just a line integral, and if you’ve taken a vector calculus course you’ll know that it’s value won’t depend on the parametrization:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cint_%5Cgamma%20f%5C,%20ds%20=%20%5Cint_a%5Eb%20f%5Cbig(%5Cgamma(%5Clambda)%5Cbig)%5C,%20%5Cleft%7C%5Cfrac%7Bd%5Cgamma%7D%7Bd%5Clambda%7D%5Cright%7C%20d%5Clambda%20,%0A"></p>
+<p>Written out with a parameter <img src="https://latex.codecogs.com/png.latex?%5Clambda">, using <img src="https://latex.codecogs.com/png.latex?%7Cd%5Cgamma/d%5Clambda%7C%20=%20%5Csqrt%7B2T_%5Clambda%7D">, the action becomes</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AS_J%20=%20%5Cint%202%5Csqrt%7B(E%20-%20V)%5C,%20T_%5Clambda%7D%5C;%20d%5Clambda,%20%5Cqquad%20T_%5Clambda%20=%20%5Cfrac12%20%5Csum_i%20m_i%20%5Cleft(%5Cfrac%7Bdx_i%7D%7Bd%5Clambda%7D%5Cright)%5E2%20.%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?T_%5Clambda"> is what the kinetic energy would be if <img src="https://latex.codecogs.com/png.latex?%5Clambda"> were time. It is not physical, since it changes if we relabel the path, but the combination <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7BT_%5Clambda%7D%5C,d%5Clambda"> doesn’t.</p>
+</section>
+<section id="where-time-comes-from" class="level3">
+<h3 class="anchored" data-anchor-id="where-time-comes-from">Where time comes from</h3>
+<p>Making <img src="https://latex.codecogs.com/png.latex?S_J"> stationary gives the equations of motion. With <img src="https://latex.codecogs.com/png.latex?x_i'%20=%20dx_i/d%5Clambda">, the Lagrangian is <img src="https://latex.codecogs.com/png.latex?L%20=%202%5Csqrt%7B(E-V)%5C,T_%5Clambda%7D">, and the Euler–Lagrange equations say</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7Bd%7D%7Bd%5Clambda%7D%5Cleft(%5Cfrac%7B%5Cpartial%20L%7D%7B%5Cpartial%20x_i'%7D%5Cright)%20=%20%5Cfrac%7B%5Cpartial%20L%7D%7B%5Cpartial%20x_i%7D%20.%0A"></p>
+<p>Only <img src="https://latex.codecogs.com/png.latex?T_%5Clambda"> depends on the velocities, with <img src="https://latex.codecogs.com/png.latex?%5Cpartial%20T_%5Clambda/%5Cpartial%20x_i'%20=%20m_i%20x_i'">, and only <img src="https://latex.codecogs.com/png.latex?V"> depends on the positions.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7Bd%7D%7Bd%5Clambda%7D%5Cleft(%20m_i%20%5Cfrac%7Bdx_i%7D%7Bd%5Clambda%7D%5Csqrt%7B%5Cfrac%7BE-V%7D%7BT_%5Clambda%7D%7D%20%5Cright)%20=%20-%5Cfrac%7B%5Cpartial%20V%7D%7B%5Cpartial%20x_i%7D%5Csqrt%7B%5Cfrac%7BT_%5Clambda%7D%7BE-V%7D%7D%20.%0A"></p>
+<p>They look messy, but notice that the same factor <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7BT_%5Clambda/(E-V)%7D"> appears on both sides (inverted on the left). This suggests choosing a new label <img src="https://latex.codecogs.com/png.latex?t"> that absorbs it:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Adt%20=%20%5Csqrt%7B%5Cfrac%7BT_%5Clambda%7D%7BE-V%7D%7D%5C;%20d%5Clambda%20=%20%5Cfrac%7Bds%7D%7B%5Csqrt%7B2(E%20-%20V)%7D%7D%20=%20%5Csqrt%7B%5Cfrac%7B%5Csum_i%20m_i%20%5C,%20dx_i%5E2%7D%7B2%5C,(E%20-%20V)%7D%7D%20.%0A"></p>
+<p>With this label the momentum becomes <img src="https://latex.codecogs.com/png.latex?p_i%20=%20m_i%5C,%20dx_i/dt">, and the equations of motion become</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Am_i%20%5Cfrac%7Bd%5E2%20x_i%7D%7Bdt%5E2%7D%20=%20-%5Cfrac%7B%5Cpartial%20V%7D%7B%5Cpartial%20x_i%7D%20,%0A"></p>
+<p>which is Newton’s second law. Any other label would leave extra terms in the equations, so <img src="https://latex.codecogs.com/png.latex?t"> is the unique label (up to choosing units and a starting point) in which the law takes its simplest form. We call it time.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>physics</category>
+  <category>philosophy analytical mechanics</category>
+  <guid>https://juantorofabra.com/posts/timeless_mechanics/timeless_mechanics.html</guid>
+  <pubDate>Sat, 31 Oct 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://juantorofabra.com/posts/timeless_mechanics/newton_vs_leibniz.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>Flip-Flopping Claude spinner verbs</title>
   <link>https://juantorofabra.com/posts/flip_flopping/flip_flopping.html</link>
@@ -1370,7 +1450,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 </section>
 
  ]]></description>
-  <category>statistical physics</category>
+  <category>physics</category>
   <category>games</category>
   <category>machine learning</category>
   <guid>https://juantorofabra.com/posts/is_go_ferromagnetic/is_go_ferromagnetic.html</guid>
@@ -1401,7 +1481,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%20P(%5C%7Cx%5C%7C%20%5Cle%201-%5Cvarepsilon)%20=%20(1-%5Cvarepsilon)%5En%20%5Clongrightarrow%200.%0A"></p>
 <p>For <img src="https://latex.codecogs.com/png.latex?%5Cvarepsilon%20=%200.01"> and <img src="https://latex.codecogs.com/png.latex?n=3"> the inner part holds <img src="https://latex.codecogs.com/png.latex?97%5C%25"> of the volume, for <img src="https://latex.codecogs.com/png.latex?n=100"> it holds <img src="https://latex.codecogs.com/png.latex?37%5C%25"> and for <img src="https://latex.codecogs.com/png.latex?n=1000"> it holds <img src="https://latex.codecogs.com/png.latex?0.004%5C%25">. The rest lies in the thin shell <img src="https://latex.codecogs.com/png.latex?1-%5Cvarepsilon%20%3C%20%5C%7Cx%5C%7C%20%5Cle%201"> near the surface.</p>
 <p>If we sample points, their distance to the center has density <img src="https://latex.codecogs.com/png.latex?n%20r%5E%7Bn-1%7D"> (the derivative of <img src="https://latex.codecogs.com/png.latex?r%5En">), and as <img src="https://latex.codecogs.com/png.latex?n"> grows it gets closer and closer to <img src="https://latex.codecogs.com/png.latex?r%20=%201">.</p>
-<div id="ca557d08" class="cell" data-execution_count="2">
+<div id="f52fbd05" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1422,7 +1502,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 <p>Where does the random point’s latitude <img src="https://latex.codecogs.com/png.latex?x_1"> tend to land? It falls between <img src="https://latex.codecogs.com/png.latex?t"> and <img src="https://latex.codecogs.com/png.latex?t+dt"> with probability proportional to the volume of the thin slab <img src="https://latex.codecogs.com/png.latex?%5C%7Bt%20%3C%20x_1%20%3C%20t+dt%5C%7D"> of the ball. The slab is approximately an <img src="https://latex.codecogs.com/png.latex?(n-1)">-dimensional ball of radius <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B1-t%5E2%7D"> with thickness <img src="https://latex.codecogs.com/png.latex?dt">, so its volume is proportional to <img src="https://latex.codecogs.com/png.latex?%5Cbig(%5Csqrt%7B1-t%5E2%7D%5Cbig)%5E%7Bn-1%7Ddt%20=%0A(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D%5C,dt">. Hence the latitude has density</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Af_n(t)%20=%20c_n%5C,(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D,%0A"></p>
 <p>where <img src="https://latex.codecogs.com/png.latex?c_n"> is some function of <img src="https://latex.codecogs.com/png.latex?n"> (we don’t care). We will use it shortly. Also, be careful, the diagram is in 3D but the calculation is for an arbitrary number of dimensions <img src="https://latex.codecogs.com/png.latex?n">.</p>
-<div id="f7bb49c8" class="cell" data-execution_count="3">
+<div id="dbdea231" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1435,7 +1515,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 <p>For large <img src="https://latex.codecogs.com/png.latex?n"> we then have <img src="https://latex.codecogs.com/png.latex?x_1%20%5Csim%20%5Cfrac%7B1%7D%7B%5Csqrt%20n%7D">, so <img src="https://latex.codecogs.com/png.latex?t%5E2"> is small and <img src="https://latex.codecogs.com/png.latex?f_n(t)%20=%20(1-t%5E2)%5E%7B%5Cfrac%7Bn-1%7D%7B2%7D%7D=%5Cexp%5C!%5Cbig(%5Ctfrac%7Bn-1%7D%7B2%7D%5Cln(1-t%5E2)%5Cbig)%5Capprox%20e%5E%7B-(n-1)t%5E2/2%7D">, which is a Gaussian. Hence</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Ax_1%20%5Capprox%20%5Cmathcal%20N%5C!%5Cleft(0,%20%5Ctfrac1n%5Cright).%0A"></p>
 <p>Here is the latitude of sampled points: for <img src="https://latex.codecogs.com/png.latex?n=3"> it follows <img src="https://latex.codecogs.com/png.latex?f_n"> but is far from Gaussian, while for <img src="https://latex.codecogs.com/png.latex?n=20"> and <img src="https://latex.codecogs.com/png.latex?n=200"> it is indistinguishable from <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%20N(0,1/(n))"> and narrower each time.</p>
-<div id="86cd9b6c" class="cell" data-execution_count="4">
+<div id="46385bfa" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1499,7 +1579,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 <section id="the-shadow" class="level2">
 <h2 class="anchored" data-anchor-id="the-shadow">The shadow</h2>
 <p>To illustrate this, take each sampled point and keep only its first two coordinates <img src="https://latex.codecogs.com/png.latex?(x_1,%20x_2)"> i.e.&nbsp;project it on a planem like the shadow of a ball on the floor. Below, each dot is the shadow of one point, and its color is that point’s true distance to the center, <img src="https://latex.codecogs.com/png.latex?%5C%7Cx%5C%7C">, computed with all <img src="https://latex.codecogs.com/png.latex?n"> coordinates: yellow means the point is on the surface, purple means it is near the center.</p>
-<div id="36c33ad3" class="cell" data-execution_count="5">
+<div id="b00b3929" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1516,7 +1596,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 <p>Every point has its own pole, the direction <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bx%7D%7B%5C%7Cx%5C%7C%7D">. So we can use one random direction <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> as the pole and ask what latitude another independent random direction <img src="https://latex.codecogs.com/png.latex?%5Ctheta'"> has. Rotating <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> to <img src="https://latex.codecogs.com/png.latex?e_1">, that latitude is just <img src="https://latex.codecogs.com/png.latex?%5Ctheta'_1">, and slicing the sphere (the slice at latitude <img src="https://latex.codecogs.com/png.latex?t"> is a sphere of radius <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B1-t%5E2%7D">, tilted) gives it density <img src="https://latex.codecogs.com/png.latex?%5Cpropto%20(1-t%5E2)%5E%7B%5Cfrac%7Bn-3%7D%7B2%7D%7D">. With <img src="https://latex.codecogs.com/png.latex?t%20=%20%5Ccos%5Cvarphi">, the angle between the two directions has density</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0Ap_n(%5Cvarphi)%20%5Cpropto%20%5Csin%5E%7Bn-2%7D%5Cvarphi,%20%5Cqquad%20%5Cvarphi%5Cin%5B0,%5Cpi%5D.%0A"></p>
 <p>For <img src="https://latex.codecogs.com/png.latex?n=3"> this is <img src="https://latex.codecogs.com/png.latex?%5Csin%5Cvarphi">, fairly spread out. For large <img src="https://latex.codecogs.com/png.latex?n"> it becomes a peak at <img src="https://latex.codecogs.com/png.latex?90%C2%B0"> of width <img src="https://latex.codecogs.com/png.latex?%5Csim%201/%5Csqrt%20n"> radians: two random directions in <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20R%5E%7B1000%7D"> are within <img src="https://latex.codecogs.com/png.latex?90%C2%B0%20%5Cpm%205.4%C2%B0"> (“basically” orthogonal) of each other with probability about <img src="https://latex.codecogs.com/png.latex?99.7%5C%25">.</p>
-<div id="5767997d" class="cell" data-execution_count="6">
+<div id="3656c581" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1527,7 +1607,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
 </div>
 </div>
 <p>The same happens for many directions at once. Below we take <img src="https://latex.codecogs.com/png.latex?40"> random directions and color the cosine of the angle between every pair. The diagonal is each direction with itself, so it is always <img src="https://latex.codecogs.com/png.latex?1">. For <img src="https://latex.codecogs.com/png.latex?n=3"> the rest is a mess of positive and negative values, since 40 directions in 3D cannot all be perpendicular. For <img src="https://latex.codecogs.com/png.latex?n=1000"> everything outside the diagonal is close to <img src="https://latex.codecogs.com/png.latex?0">: all 40 directions are nearly perpendicular to each other at the same time.</p>
-<div id="e1260683" class="cell" data-execution_count="7">
+<div id="15cfc428" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1550,7 +1630,7 @@ Table&nbsp;5: 5-fold cross-validation: the official verbs are split into 5 parts
  ]]></description>
   <category>math</category>
   <category>probability</category>
-  <category>monte carlo</category>
+  <category>geometry</category>
   <guid>https://juantorofabra.com/posts/everybody_lives_in_ecuador/everybody_lives_in_ecuador.html</guid>
   <pubDate>Sat, 10 Oct 2026 22:00:00 GMT</pubDate>
   <media:content url="https://juantorofabra.com/posts/everybody_lives_in_ecuador/sandiadimensional2.jpg" medium="image" type="image/jpeg"/>

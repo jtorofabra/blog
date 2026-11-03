@@ -323,7 +323,7 @@ window.Quarto = {
                                 <div class="quarto-categories">
                 <div class="quarto-category">math</div>
                 <div class="quarto-category">probability</div>
-                <div class="quarto-category">monte carlo</div>
+                <div class="quarto-category">geometry</div>
               </div>
                   </div>
   </div>
@@ -371,7 +371,7 @@ window.Quarto = {
 \]</span></p>
 <p>For <span class="math inline">\(\varepsilon = 0.01\)</span> and <span class="math inline">\(n=3\)</span> the inner part holds <span class="math inline">\(97\%\)</span> of the volume, for <span class="math inline">\(n=100\)</span> it holds <span class="math inline">\(37\%\)</span> and for <span class="math inline">\(n=1000\)</span> it holds <span class="math inline">\(0.004\%\)</span>. The rest lies in the thin shell <span class="math inline">\(1-\varepsilon &lt; \|x\| \le 1\)</span> near the surface.</p>
 <p>If we sample points, their distance to the center has density <span class="math inline">\(n r^{n-1}\)</span> (the derivative of <span class="math inline">\(r^n\)</span>), and as <span class="math inline">\(n\)</span> grows it gets closer and closer to <span class="math inline">\(r = 1\)</span>.</p>
-<div id="ca557d08" class="cell" data-execution_count="2">
+<div id="f52fbd05" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -395,7 +395,7 @@ window.Quarto = {
 f_n(t) = c_n\,(1-t^2)^{\frac{n-1}{2}},
 \]</span></p>
 <p>where <span class="math inline">\(c_n\)</span> is some function of <span class="math inline">\(n\)</span> (we don’t care). We will use it shortly. Also, be careful, the diagram is in 3D but the calculation is for an arbitrary number of dimensions <span class="math inline">\(n\)</span>.</p>
-<div id="f7bb49c8" class="cell" data-execution_count="3">
+<div id="dbdea231" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -410,7 +410,7 @@ f_n(t) = c_n\,(1-t^2)^{\frac{n-1}{2}},
 x_1 \approx \mathcal N\!\left(0, \tfrac1n\right).
 \]</span></p>
 <p>Here is the latitude of sampled points: for <span class="math inline">\(n=3\)</span> it follows <span class="math inline">\(f_n\)</span> but is far from Gaussian, while for <span class="math inline">\(n=20\)</span> and <span class="math inline">\(n=200\)</span> it is indistinguishable from <span class="math inline">\(\mathcal N(0,1/(n))\)</span> and narrower each time.</p>
-<div id="86cd9b6c" class="cell" data-execution_count="4">
+<div id="46385bfa" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -478,7 +478,7 @@ x_1 \approx \mathcal N\!\left(0, \tfrac1n\right).
 <section id="the-shadow" class="level2">
 <h2 class="anchored" data-anchor-id="the-shadow">The shadow</h2>
 <p>To illustrate this, take each sampled point and keep only its first two coordinates <span class="math inline">\((x_1, x_2)\)</span> i.e.&nbsp;project it on a planem like the shadow of a ball on the floor. Below, each dot is the shadow of one point, and its color is that point’s true distance to the center, <span class="math inline">\(\|x\|\)</span>, computed with all <span class="math inline">\(n\)</span> coordinates: yellow means the point is on the surface, purple means it is near the center.</p>
-<div id="36c33ad3" class="cell" data-execution_count="5">
+<div id="b00b3929" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -497,7 +497,7 @@ x_1 \approx \mathcal N\!\left(0, \tfrac1n\right).
 p_n(\varphi) \propto \sin^{n-2}\varphi, \qquad \varphi\in[0,\pi].
 \]</span></p>
 <p>For <span class="math inline">\(n=3\)</span> this is <span class="math inline">\(\sin\varphi\)</span>, fairly spread out. For large <span class="math inline">\(n\)</span> it becomes a peak at <span class="math inline">\(90°\)</span> of width <span class="math inline">\(\sim 1/\sqrt n\)</span> radians: two random directions in <span class="math inline">\(\mathbb R^{1000}\)</span> are within <span class="math inline">\(90° \pm 5.4°\)</span> (“basically” orthogonal) of each other with probability about <span class="math inline">\(99.7\%\)</span>.</p>
-<div id="5767997d" class="cell" data-execution_count="6">
+<div id="3656c581" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -508,7 +508,7 @@ p_n(\varphi) \propto \sin^{n-2}\varphi, \qquad \varphi\in[0,\pi].
 </div>
 </div>
 <p>The same happens for many directions at once. Below we take <span class="math inline">\(40\)</span> random directions and color the cosine of the angle between every pair. The diagonal is each direction with itself, so it is always <span class="math inline">\(1\)</span>. For <span class="math inline">\(n=3\)</span> the rest is a mess of positive and negative values, since 40 directions in 3D cannot all be perpendicular. For <span class="math inline">\(n=1000\)</span> everything outside the diagonal is close to <span class="math inline">\(0\)</span>: all 40 directions are nearly perpendicular to each other at the same time.</p>
-<div id="e1260683" class="cell" data-execution_count="7">
+<div id="15cfc428" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
