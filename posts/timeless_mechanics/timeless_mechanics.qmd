@@ -123,3 +123,10 @@ m_i \frac{d^2 x_i}{dt^2} = -\frac{\partial V}{\partial x_i} ,
 $$
 
 which is Newton's second law. Any other label would leave extra terms in the equations, so $t$ is the unique label (up to choosing units and a starting point) in which the law takes its simplest form. We call it time.
+
+### Not so surprinsing
+It is not surprising that we arrive at newton's laws, since the analytical mechanics concepts we borrowed were built explicitely to produce them. The point is that instead of taking time as fundamental we can take the Jacobi action as fundamental and derive time from it. 
+
+In my daily life I will likely still use Newton's laws, but it's a nice example of math alone can't tell us how the universe really is. These two formalisms produce equivalent predictions but have very different philosophical implications.
+
+This will change a bit when we talk about absolute space, but I will leave that for another post.
