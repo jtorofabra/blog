@@ -1,7 +1,7 @@
 ---
 title: "Timeless Mechanics"
-date: 2026-11-01
-categories: [physics, philosophy analytical mechanics]
+date: 2026-11-03
+categories: [physics, philosophy, analytical mechanics]
 image: newton_vs_leibniz.png
 format:
   html:
@@ -131,3 +131,6 @@ It is not surprising that we arrive at newton's laws, since the analytical mecha
 In my daily life I will likely still use Newton's laws, but it's a nice example of how math alone can't tell us how the universe really is. These two formalisms produce equivalent predictions but have very different philosophical implications.
 
 This will change a bit when we try to remove absolute space, but I will leave that for another post.
+
+## Further reading
+To see the complete argument see Julian Barbour's short essay "The Nature of Time" (https://arxiv.org/abs/0903.3489) (2009) for the physics and for the philosophy, Michael Esfeld's "Philosophie des sciences : une introduction" (3rd ed., PPUR, 2020; in French), chapter 14.
