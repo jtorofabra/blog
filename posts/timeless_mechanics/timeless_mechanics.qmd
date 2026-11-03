@@ -31,6 +31,7 @@ In Leibniz's view (relationalism), you only really need the distances between ob
 Take the universe as $N$ particles with masses $m_i$ at positions $x_i$. A configuration of the whole universe is a single point in a $3N$-dimensional space, which we call configuration space. A history of the universe is then a path through this space. We have a sequence of configurations and an order, nothing more.
 
 ## Analytical mechanics and Jacobi's principle
+For this part some basic knowledge of analytical mechanics will be needed.
 
 We know from analytical mechanics that physical trajectories make stationary a scalar quantity known as the action. In its standard form (Hamilton's principle) it is written as an integral over time, with $T$ the kinetic energy and $V$ the potential energy:
 
@@ -127,6 +128,6 @@ which is Newton's second law. Any other label would leave extra terms in the equ
 ### Not so surprinsing
 It is not surprising that we arrive at newton's laws, since the analytical mechanics concepts we borrowed were built explicitely to produce them. The point is that instead of taking time as fundamental we can take the Jacobi action as fundamental and derive time from it. 
 
-In my daily life I will likely still use Newton's laws, but it's a nice example of math alone can't tell us how the universe really is. These two formalisms produce equivalent predictions but have very different philosophical implications.
+In my daily life I will likely still use Newton's laws, but it's a nice example of how math alone can't tell us how the universe really is. These two formalisms produce equivalent predictions but have very different philosophical implications.
 
-This will change a bit when we talk about absolute space, but I will leave that for another post.
+This will change a bit when we try to remove absolute space, but I will leave that for another post.
